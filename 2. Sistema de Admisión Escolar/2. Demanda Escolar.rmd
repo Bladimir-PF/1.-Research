@@ -1,0 +1,95 @@
+---
+title: "2. Demanda Escolar"
+author: "GPF"
+date: '2022-06-11'
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r 2018}
+a1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/A1_Oferta_Establecimientos_etapa_regular_2018_Admision_2019.csv")
+
+a2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/A2_Oferta_Establecimientos_etapa_complementaria_2018_Admision_2019.csv")
+
+b1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/B1_Postulantes_etapa_regular_2018_Admision_2019_PUBL.csv")
+
+b2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/B2_Postulantes_etapa_complementaria_2018_Admision_2019_PUBL.csv")
+
+c1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/C1_Postulaciones_etapa_regular_2018_Admision_2019_PUBL.csv")
+
+c2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/C2_Postulaciones_etapa_complementaria_2018_Admision_2019_PUBL.csv")
+
+d1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/D1_Resultados_etapa_regular_2018_Admision_2019_PUBL.csv")
+
+d2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/D2_Resultados_etapa_complementaria_2018_Admision_2019_PUBL.csv")
+```
+
+```{r 2019}
+a1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/A1_Oferta_Establecimientos_etapa_regular_2019_Admision_2020.csv")
+
+a2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/A2_Oferta_Establecimientos_etapa_complementaria_2019_Admision_2020.csv")
+
+b1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/B1_Postulantes_etapa_regular_2019_Admision_2020_PUBL.csv")
+
+b2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/B2_Postulantes_etapa_complementaria_2019_Admision_2020_PUBL.csv")
+
+c1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/C1_Postulaciones_etapa_regular_2019_Admision_2020_PUBL.csv")
+
+c2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/C2_Postulaciones_etapa_complementaria_2019_Admision_2020_PUBL.csv")
+
+d1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/D1_Resultados_etapa_regular_2019_Admision_2020_PUBL.csv")
+
+d2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/D2_Resultados_etapa_complementaria_2019_Admision_2020_PUBL.csv")
+```
+
+```{r 2020}
+a1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/A1_Oferta_Establecimientos_etapa_regular_2020_Admision_2021.csv")
+
+a2_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/A2_Oferta_Establecimientos_etapa_complementaria_2020_Admision_2021.csv")
+
+b1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/B1_Postulantes_etapa_regular_2020_Admision_2021_PUBL.csv")
+
+b2_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/B2_Postulantes_etapa_complementaria_2020_Admision_2021_PUBL.csv")
+
+c1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/C1_Postulaciones_etapa_regular_2020_Admision_2021_PUBL.csv")
+
+c2_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/C2_Postulaciones_etapa_complementaria_2020_Admision_2021_PUBL.csv")
+
+d1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/D1_Resultados_etapa_regular_2020_Admision_2021_PUBL.csv")
+
+d2_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/D2_Resultados_etapa_complementaria_2020_Admision_2021_PUBL.csv")
+```
+
+```{r 2021}
+a1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/A1_Oferta_Establecimientos_etapa_regular_2021_Admision_2022.csv")
+
+a2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/A2_Oferta_Establecimientos_etapa_complementaria_2021_Admision_2022.csv")
+
+b1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/B1_Postulantes_etapa_regular_2021_Admision_2022_PUBL.csv")
+
+b2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/B2_Postulantes_etapa_complementaria_2021_Admision_2022_PUBL.csv")
+
+c1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/C1_Postulaciones_etapa_regular_2021_Admision_2022_PUBL.csv")
+
+c2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/C2_Postulaciones_etapa_complementaria_2021_Admision_2022_PUBL.csv")
+
+d1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/D1_Resultados_etapa_regular_2021_Admision_2022_PUBL.csv")
+
+d2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/D2_Resultados_etapa_complementaria_2021_Admision_2022_PUBL.csv")
+```
+
+##
+
+```{r}
+summary(c1_18$preferencia_postulante)
+```
+
