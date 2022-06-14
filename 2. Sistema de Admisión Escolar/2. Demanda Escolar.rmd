@@ -96,23 +96,45 @@ d = resultados
 
 ## Oferta Establecimientos
 
-```{r}
+```{r mat18}
 # Caso unico para rbd (primero)
 
 a1_18 <- a1_18%>%
   mutate(
     unico = duplicated(a1_18$rbd),
     unico = ifelse(unico == FALSE, 1, 0))
-```
 
-```{r}
 # Agregacion de variables para caracterizar el establecimiento educativo segun rbd
 
 mat18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/Resumen de matrícula por establecimiento/Resumen-matricula-EE-2018/Resumen_Matricula_EE_Oficial_2018.csv")
 
+mat18 <- mat18%>%
+  mutate(
+    region = ifelse(NOM_COM_RBD == 'BULNES'|
+NOM_COM_RBD == 'CHILLAN'|
+NOM_COM_RBD == 'CHILLAN VIEJO'|
+NOM_COM_RBD == 'COBQUECURA'|
+NOM_COM_RBD == 'COELEMU'|
+NOM_COM_RBD == 'COIHUECO'|
+NOM_COM_RBD == 'EL CARMEN'|
+NOM_COM_RBD == 'NINHUE'|
+NOM_COM_RBD == 'ÑIQUEN'|
+NOM_COM_RBD == 'PEMUCO'|
+NOM_COM_RBD == 'PINTO'|
+NOM_COM_RBD == 'PORTEZUELO'|
+NOM_COM_RBD == 'QUILLON'|
+NOM_COM_RBD == 'QUIRIHUE'|
+NOM_COM_RBD == 'RANQUIL'|
+NOM_COM_RBD == 'SAN CARLOS'|
+NOM_COM_RBD == 'SAN FABIAN'|
+NOM_COM_RBD == 'SAN IGNACIO'|
+NOM_COM_RBD == 'SAN NICOLAS'|
+NOM_COM_RBD == 'TREHUACO'|
+NOM_COM_RBD == 'YUNGAY', 16, COD_REG_RBD))
+
 mat18 <- mat18 %>%
-  select(RBD, COD_DEPE2, RURAL_RBD, COD_REG_RBD)%>%
-  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, region = COD_REG_RBD)
+  select(RBD, COD_DEPE2, RURAL_RBD, COD_REG_RBD, region)%>%
+  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD)
 
 oferta18 <- left_join(a1_18, mat18, by = 'rbd')
 
@@ -120,45 +142,301 @@ oferta18 <- oferta18 %>%
   mutate(
     dep = ifelse(dep == 1 | dep == 5, 0,1)
   )
+
+oferta18%>%
+  filter(unico == 1)%>%
+  count(
+    region
+  )
 ```
 
+```{r caracterizacion2018}
+#Caracterizacion oferta 2018
 
-```{r}
+car18 <- rbind(
 oferta18 %>%
   filter(unico == 1)%>%
   count(cod_jor)%>%
   mutate(
-    prop = round(n/sum(n),2)
-  )
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = cod_jor),
 
 oferta18 %>%
   filter(unico == 1)%>%
   count(con_copago)%>%
   mutate(
-    prop = round(n/sum(n),2)
-  )
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = con_copago),
 
 oferta18 %>%
   filter(unico == 1)%>%
   count(dep)%>%
   mutate(
-    prop = round(n/sum(n),2)
-  )
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = dep),
 
 oferta18 %>%
   filter(unico == 1)%>%
   count(zona)%>%
   mutate(
-    prop = round(n/sum(n),2)
-  )
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = zona),
 
 oferta18 %>%
   filter(unico == 1)%>%
   count(region)%>%
   mutate(
-    prop = round(n/sum(n),2)
-  )
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = region))
+
+car18 <- dplyr::add_row(
+  car18,
+  var = 13,
+  n = 0,
+  prop = 0,
+  .before = 22
+)
 ```
 
 0 publico       1 privado
 0 urbano        1 rural
+
+```{r mat19}
+# Caso unico para rbd (primero)
+a1_19 <- a1_19%>%
+  mutate(
+    unico = duplicated(a1_19$rbd),
+    unico = ifelse(unico == FALSE, 1, 0))
+
+# Agregacion de variables para caracterizar el establecimiento educativo segun rbd
+
+mat19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/Resumen de matrícula por establecimiento/Resumen-matricula-EE-2019/Resumen_Matricula_EE_Oficial_2019.csv")
+
+mat19 <- mat19 %>%
+  select(RBD, COD_DEPE2, RURAL_RBD, COD_REG_RBD)%>%
+  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, region = COD_REG_RBD)
+
+oferta19 <- left_join(a1_19, mat19, by = 'rbd')
+
+oferta19 <- oferta19 %>%
+  mutate(
+    dep = ifelse(dep == 1 | dep == 5, 0,1)
+  )
+```
+
+```{r caracterizacion2019}
+#Caracterizacion oferta 2019
+apply((oferta18%>%
+           filter(unico == 1)%>%
+  select(cod_jor, con_copago, dep, zona, region)), 2, table)
+
+car19 <- rbind(
+oferta19 %>%
+  filter(unico == 1)%>%
+  count(cod_jor)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = cod_jor),
+
+oferta19 %>%
+  filter(unico == 1)%>%
+  count(con_copago)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = con_copago),
+
+oferta19 %>%
+  filter(unico == 1)%>%
+  count(dep)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = dep),
+
+oferta19 %>%
+  filter(unico == 1)%>%
+  count(zona)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = zona),
+
+oferta19 %>%
+  filter(unico == 1)%>%
+  count(region)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = region))
+```
+
+```{r mat20}
+# Caso unico para rbd (primero)
+a1_20 <- a1_20%>%
+  mutate(
+    unico = duplicated(a1_20$rbd),
+    unico = ifelse(unico == FALSE, 1, 0))
+
+# Agregacion de variables para caracterizar el establecimiento educativo segun rbd
+
+mat20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/Resumen de matrícula por establecimiento/Resumen-matricula-EE-2020/Resumen_Matricula_EE_Oficial_2020.csv")
+
+mat20 <- mat20 %>%
+  select(RBD, COD_DEPE2, RURAL_RBD, COD_REG_RBD)%>%
+  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, region = COD_REG_RBD)
+
+oferta20 <- left_join(a1_20, mat20, by = 'rbd')
+
+oferta20 <- oferta20 %>%
+  mutate(
+    dep = ifelse(dep == 1 | dep == 5, 0,1)
+  )
+```
+
+```{r caracterizacion2020}
+#Caracterizacion oferta 2019
+apply((oferta18%>%
+           filter(unico == 1)%>%
+  select(cod_jor, con_copago, dep, zona, region)), 2, table)
+
+car20 <- rbind(
+oferta20 %>%
+  filter(unico == 1)%>%
+  count(cod_jor)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = cod_jor),
+
+oferta20 %>%
+  filter(unico == 1)%>%
+  count(con_copago)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = con_copago),
+
+oferta20 %>%
+  filter(unico == 1)%>%
+  count(dep)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = dep),
+
+oferta20 %>%
+  filter(unico == 1)%>%
+  count(zona)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = zona),
+
+oferta20 %>%
+  filter(unico == 1)%>%
+  count(region)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = region))
+```
+
+```{r mat21}
+# Caso unico para rbd (primero)
+a1_21 <- a1_21%>%
+  mutate(
+    unico = duplicated(a1_21$rbd),
+    unico = ifelse(unico == FALSE, 1, 0))
+
+# Agregacion de variables para caracterizar el establecimiento educativo segun rbd
+
+mat21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/Resumen de matrícula por establecimiento/Resumen-matricula-EE-2021/Resumen_Matricula_EE_Oficial_2021.csv")
+
+mat21 <- mat21 %>%
+  select(RBD, COD_DEPE2, RURAL_RBD, COD_REG_RBD)%>%
+  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, region = COD_REG_RBD)
+
+oferta21 <- left_join(a1_21, mat21, by = 'rbd')
+
+oferta21 <- oferta21 %>%
+  mutate(
+    dep = ifelse(dep == 1 | dep == 5, 0,1)
+  )
+```
+
+```{r caracterizacion2021}
+#Caracterizacion oferta 2019
+apply((oferta18%>%
+           filter(unico == 1)%>%
+  select(cod_jor, con_copago, dep, zona, region)), 2, table)
+
+car21 <- rbind(
+oferta21 %>%
+  filter(unico == 1)%>%
+  count(cod_jor)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = cod_jor),
+
+oferta21 %>%
+  filter(unico == 1)%>%
+  count(con_copago)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = con_copago),
+
+oferta21 %>%
+  filter(unico == 1)%>%
+  count(dep)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = dep),
+
+oferta21 %>%
+  filter(unico == 1)%>%
+  count(zona)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = zona),
+
+oferta21 %>%
+  filter(unico == 1)%>%
+  count(region)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = region))
+```
+
+```{r}
+car_ee <- dplyr::bind_cols(
+  car18,car19$n,car19$prop,car20$n,car20$prop,car21$n,car21$prop)
+
+car_ee <- car_ee%>%
+  rename(
+    n18 = n,
+    prop18 = prop,
+    n19 = ...4,
+    prop19 = ...5,
+    n20 = ...6,
+    prop20 = ...7,
+    n21 = ...8,
+    prop21 = ...9)
+
+kable(car_ee)%>%
+  kable_styling()
+
+write.csv(car_ee,"C:/Users/geral/OneDrive - University of Iowa/PhD portfolio/1.-Research/2. Sistema de Admisión Escolar/car_ee.csv", row.names = FALSE)
+```
+
