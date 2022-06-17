@@ -16,7 +16,10 @@ library(tidyverse)
 library(kableExtra)
 ```
 
-```{r oferta_regular}
+```{r oferta}
+
+# Regular
+
 a1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/A1_Oferta_Establecimientos_etapa_regular_2018_Admision_2019.csv")
 
 a1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/A1_Oferta_Establecimientos_etapa_regular_2019_Admision_2020.csv")
@@ -24,78 +27,90 @@ a1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases
 a1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/A1_Oferta_Establecimientos_etapa_regular_2020_Admision_2021.csv")
 
 a1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/A1_Oferta_Establecimientos_etapa_regular_2021_Admision_2022.csv")
+
+# Complementaria
+
+a2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/A2_Oferta_Establecimientos_etapa_complementaria_2018_Admision_2019.csv")
+
+a2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/A2_Oferta_Establecimientos_etapa_complementaria_2019_Admision_2020.csv")
+
+a2_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/A2_Oferta_Establecimientos_etapa_complementaria_2020_Admision_2021.csv")
+
+a2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/A2_Oferta_Establecimientos_etapa_complementaria_2021_Admision_2022.csv")
 ```
 
-```{r 2018}
-a2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/A2_Oferta_Establecimientos_etapa_complementaria_2018_Admision_2019.csv")
+```{r postulantes}
+
+# Regular
 
 b1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/B1_Postulantes_etapa_regular_2018_Admision_2019_PUBL.csv")
 
-b2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/B2_Postulantes_etapa_complementaria_2018_Admision_2019_PUBL.csv")
-
-c1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/C1_Postulaciones_etapa_regular_2018_Admision_2019_PUBL.csv")
-
-c2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/C2_Postulaciones_etapa_complementaria_2018_Admision_2019_PUBL.csv")
-
-d1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/D1_Resultados_etapa_regular_2018_Admision_2019_PUBL.csv")
-
-d2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/D2_Resultados_etapa_complementaria_2018_Admision_2019_PUBL.csv")
-```
-
-```{r 2019}
-a2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/A2_Oferta_Establecimientos_etapa_complementaria_2019_Admision_2020.csv")
-
 b1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/B1_Postulantes_etapa_regular_2019_Admision_2020_PUBL.csv")
-
-b2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/B2_Postulantes_etapa_complementaria_2019_Admision_2020_PUBL.csv")
-
-c1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/C1_Postulaciones_etapa_regular_2019_Admision_2020_PUBL.csv")
-
-c2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/C2_Postulaciones_etapa_complementaria_2019_Admision_2020_PUBL.csv")
-
-d1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/D1_Resultados_etapa_regular_2019_Admision_2020_PUBL.csv")
-
-d2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/D2_Resultados_etapa_complementaria_2019_Admision_2020_PUBL.csv")
-```
-
-```{r 2020}
-a2_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/A2_Oferta_Establecimientos_etapa_complementaria_2020_Admision_2021.csv")
 
 b1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/B1_Postulantes_etapa_regular_2020_Admision_2021_PUBL.csv")
 
+b1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/B1_Postulantes_etapa_regular_2021_Admision_2022_PUBL.csv")
+
+# Complementaria
+
+b2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/B2_Postulantes_etapa_complementaria_2018_Admision_2019_PUBL.csv")
+
+b2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/B2_Postulantes_etapa_complementaria_2019_Admision_2020_PUBL.csv")
+
 b2_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/B2_Postulantes_etapa_complementaria_2020_Admision_2021_PUBL.csv")
+
+b2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/B2_Postulantes_etapa_complementaria_2021_Admision_2022_PUBL.csv")
+```
+
+```{r postulaciones}
+
+# Regular
+
+c1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/C1_Postulaciones_etapa_regular_2018_Admision_2019_PUBL.csv")
+
+c1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/C1_Postulaciones_etapa_regular_2019_Admision_2020_PUBL.csv")
 
 c1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/C1_Postulaciones_etapa_regular_2020_Admision_2021_PUBL.csv")
 
+c1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/C1_Postulaciones_etapa_regular_2021_Admision_2022_PUBL.csv")
+
+# Complementaria
+
+c2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/C2_Postulaciones_etapa_complementaria_2018_Admision_2019_PUBL.csv")
+
+c2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/C2_Postulaciones_etapa_complementaria_2019_Admision_2020_PUBL.csv")
+
 c2_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/C2_Postulaciones_etapa_complementaria_2020_Admision_2021_PUBL.csv")
+
+c2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/C2_Postulaciones_etapa_complementaria_2021_Admision_2022_PUBL.csv")
+```
+
+```{r resultados}
+
+# Regular
+
+d1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/D1_Resultados_etapa_regular_2018_Admision_2019_PUBL.csv")
+
+d1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/D1_Resultados_etapa_regular_2019_Admision_2020_PUBL.csv")
 
 d1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/D1_Resultados_etapa_regular_2020_Admision_2021_PUBL.csv")
 
-d2_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/D2_Resultados_etapa_complementaria_2020_Admision_2021_PUBL.csv")
-```
-
-```{r 2021}
-a2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/A2_Oferta_Establecimientos_etapa_complementaria_2021_Admision_2022.csv")
-
-b1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/B1_Postulantes_etapa_regular_2021_Admision_2022_PUBL.csv")
-
-b2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/B2_Postulantes_etapa_complementaria_2021_Admision_2022_PUBL.csv")
-
-c1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/C1_Postulaciones_etapa_regular_2021_Admision_2022_PUBL.csv")
-
-c2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/C2_Postulaciones_etapa_complementaria_2021_Admision_2022_PUBL.csv")
-
 d1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/D1_Resultados_etapa_regular_2021_Admision_2022_PUBL.csv")
+
+# Complementaria
+
+d2_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/D2_Resultados_etapa_complementaria_2018_Admision_2019_PUBL.csv")
+
+d2_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/D2_Resultados_etapa_complementaria_2019_Admision_2020_PUBL.csv")
+
+d2_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/D2_Resultados_etapa_complementaria_2020_Admision_2021_PUBL.csv")
 
 d2_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/D2_Resultados_etapa_complementaria_2021_Admision_2022_PUBL.csv")
 ```
 
 ## Bases
 
-a = oferta establecimientos
-b = postulantes
-c = postulaciones
-d = resultados
+a = oferta establecimientos b = postulantes c = postulaciones d = resultados
 
 ## Oferta Establecimientos
 
@@ -206,8 +221,7 @@ car18 <- dplyr::add_row(
 )
 ```
 
-0 publico       1 privado
-0 urbano        1 rural
+0 publico 1 privado 0 urbano 1 rural
 
 ```{r mat19}
 # Caso unico para rbd (primero)
@@ -422,7 +436,7 @@ oferta21 %>%
   rename(var = region))
 ```
 
-```{r}
+```{r datos_caracterizacion}
 car_ee <- dplyr::bind_cols(
   car18,car19$n,car19$prop,car20$n,car20$prop,car21$n,car21$prop)
 
@@ -443,3 +457,182 @@ kable(car_ee)%>%
 #write.csv(car_ee,"C:/Users/geral/OneDrive - University of Iowa/PhD portfolio/1.-Research/2. Sistema de Admisión Escolar/car_ee.csv", row.names = FALSE)
 ```
 
+```{r}
+pos18 <- rbind(b1_18%>%
+  count(cod_nivel)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = cod_nivel),
+
+b1_18%>%
+  count(es_mujer)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = es_mujer),
+
+b1_18%>%
+  count(prioritario)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = prioritario),
+
+b1_18%>%
+  count(alto_rendimiento)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = alto_rendimiento))
+
+# 2019
+
+pos19 <- rbind(b1_19%>%
+  count(cod_nivel)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = cod_nivel),
+
+b1_19%>%
+  count(es_mujer)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = es_mujer),
+
+b1_19%>%
+  count(prioritario)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = prioritario),
+
+b1_19%>%
+  count(alto_rendimiento)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = alto_rendimiento))
+
+pos20 <- rbind(b1_20%>%
+  count(cod_nivel)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = cod_nivel),
+
+b1_20%>%
+  count(es_mujer)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = es_mujer),
+
+b1_20%>%
+  count(prioritario)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = prioritario),
+
+b1_20%>%
+  count(alto_rendimiento)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = alto_rendimiento))
+
+pos21 <- rbind(b1_21%>%
+  count(cod_nivel)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = cod_nivel),
+
+b1_21%>%
+  count(es_mujer)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = es_mujer),
+
+b1_21%>%
+  count(prioritario)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = prioritario),
+
+b1_21%>%
+  count(alto_rendimiento)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = alto_rendimiento))
+```
+
+```{r}
+car_pos <- dplyr::bind_cols(
+  pos18$var,pos18$prop,pos19$prop,pos20$prop,pos21$prop)
+
+car_pos <- car_pos%>%
+  rename(
+    var = ...1,
+    prop18 = ...2,
+    prop19 = ...3,
+    prop20 = ...4,
+    prop21 = ...5)
+
+kable(car_pos)%>%
+  kable_styling(full_width = F)
+
+#write.csv(car_pos,"C:/Users/geral/OneDrive - University of Iowa/PhD portfolio/1.-Research/2. Sistema de Admisión Escolar/car_pos.csv", row.names = FALSE)
+```
+
+```{r}
+names(c1_18)
+names(c1_19)
+names(c1_20)
+names(c1_21)
+
+ee18 <- list(c1_18,
+            c1_18%>%
+            group_by(rbd)%>%
+            count(rbd)%>%
+            rename(demanda = n),
+            
+            c1_18%>%
+            filter(agregada_por_continuidad == 0, preferencia_postulante == 1)%>%
+            group_by(rbd)%>%
+            count(rbd)%>%
+            rename(first_pref = n),
+            
+            c1_18%>%
+            filter(agregada_por_continuidad == 0, preferencia_postulante == 2)%>%
+            group_by(rbd)%>%
+            count(rbd)%>%
+            rename(second_pref = n),
+            
+            c1_18%>%
+            filter(agregada_por_continuidad == 0, preferencia_postulante == 3)%>%
+            group_by(rbd)%>%
+            count(rbd)%>%
+            rename(third_pref = n)) %>% 
+  reduce(left_join, by = "rbd")
+
+c1_18%>%
+  group_by(mrun)%>%
+  mutate(
+    prio = ifelse(prioridad_matriculado == 1 | prioridad_hermano == 1 | prioridad_hijo_funcionario == 1 | prioridad_exalumno == 1, 1,0),
+    prio_sum = sum(prio)
+  )%>%
+  select(mrun, prioridad_matriculado:prioridad_exalumno, prio, prio_sum)%>%
+  arrange(desc(prio_sum))%>%
+  view()
+  
+c1_18%>%
+  filter(mrun == 10842813)%>%
+  view()
+```
