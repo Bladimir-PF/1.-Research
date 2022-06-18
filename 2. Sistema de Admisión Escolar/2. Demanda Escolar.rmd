@@ -711,6 +711,7 @@ ee18%>%
     fourth = demanda - first_pref - second_pref - third_pref,
     diff = demanda - first_pref - second_pref - third_pref - fourth
   )%>%
+  head(.,100)%>%
   view()
 
 ```
