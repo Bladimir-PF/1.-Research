@@ -84,6 +84,8 @@ d1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases
 # Procesamiento de datos
 
 ## Oferta
+
+### 2018
 ```{r procesamiento_oferta}
 #caso unico para rbd 2018
 a1_18 <- a1_18%>%
@@ -130,7 +132,10 @@ a1_18 <- a1_18 %>%
   )
 
 remove(mat18)
+```
 
+### 2019
+```{r procesamiento_oferta}
 #caso unico para rbd 2019
 a1_19 <- a1_19%>%
   mutate(
@@ -152,7 +157,10 @@ a1_19 <- a1_19 %>%
   )
 
 remove(mat19)
+```
 
+### 2020
+```{r procesamiento_oferta}
 # Caso unico para rbd 2020
 a1_20 <- a1_20%>%
   mutate(
@@ -174,7 +182,10 @@ a1_20 <- a1_20 %>%
   )
 
 remove(mat20)
+```
 
+### 2021
+```{r procesamiento_oferta}
 #Caso unico para rbd 2021
 a1_21 <- a1_21%>%
   mutate(
@@ -198,6 +209,7 @@ a1_21 <- a1_21 %>%
 remove(mat21)
 ```
 
+### tabla oferta
 ```{r tabla_caracterizacion_oferta}
 # 2018
 car18 <- rbind(
@@ -398,8 +410,9 @@ car_ee <- car_ee%>%
 ```
 
 ## Postulantes
-```{r procesamiento_postulantes}
 
+### 2018
+```{r procesamiento_postulantes}
 #2018
 pos18 <- rbind(b1_18%>%
   count(cod_nivel)%>%
@@ -428,7 +441,10 @@ b1_18%>%
     prop = round(n/sum(n),3)*100
   )%>%
   rename(var = alto_rendimiento))
+```
 
+### 2019
+```{r procesamiento_postulantes}
 # 2019
 
 pos19 <- rbind(b1_19%>%
@@ -458,7 +474,10 @@ b1_19%>%
     prop = round(n/sum(n),3)*100
   )%>%
   rename(var = alto_rendimiento))
+```
 
+### 2020
+```{r procesamiento_postulantes}
 # 2020
 pos20 <- rbind(b1_20%>%
   count(cod_nivel)%>%
@@ -487,7 +506,10 @@ b1_20%>%
     prop = round(n/sum(n),3)*100
   )%>%
   rename(var = alto_rendimiento))
+```
 
+### 2021
+```{r procesamiento_postulantes}
 #2021
 pos21 <- rbind(b1_21%>%
   count(cod_nivel)%>%
@@ -518,6 +540,7 @@ b1_21%>%
   rename(var = alto_rendimiento))
 ```
 
+### tabla postulantes
 ```{r tabla_caracterizacion_postulantes}
 car_pos <- dplyr::bind_cols(
   pos18$var,pos18$prop,pos19$prop,pos20$prop,pos21$prop)
@@ -537,8 +560,9 @@ kable(car_pos)%>%
 ```
 
 ## Postulaciones
-```{r procesamiento_postulaciones}
 
+### 2018
+```{r procesamiento_postulaciones}
 # 2018
 
 c1_18 <- left_join(c1_18, c1_18%>%
@@ -553,34 +577,38 @@ c1_18 <- data.frame(c1_18%>%
       ))
 
 c1_18 <- list(c1_18,
-              
+     
 c1_18%>%
   filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
   group_by(rbd, cod_curso)%>%
   mutate(
-    demanda = n())%>%
-  select(rbd, cod_curso, demanda),
-
+    demanda_cod_curso = n())%>%
+  select(rbd, cod_curso, demanda_cod_curso)%>%
+  filter(duplicated(rbd, cod_curso) == F),              
+                       
 c1_18%>%
   filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
   group_by(rbd, cod_curso)%>%
   mutate(
     first_pref = sum(preferencia_postulante == 1))%>%
-  select(rbd, cod_curso, first_pref),
+  select(rbd, cod_curso, first_pref)%>%
+  filter(duplicated(rbd, cod_curso) == F),
 
 c1_18%>%
   filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
   group_by(rbd, cod_curso)%>%
   mutate(
     second_pref = sum(preferencia_postulante == 2))%>%
-  select(rbd, cod_curso, second_pref),
+  select(rbd, cod_curso, second_pref)%>%
+  filter(duplicated(rbd, cod_curso) == F),
 
 c1_18%>%
   filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
   group_by(rbd, cod_curso)%>%
   mutate(
     third_pref = sum(preferencia_postulante == 3))%>%
-  select(rbd, cod_curso, third_pref)) %>%
+  select(rbd, cod_curso, third_pref)%>%
+  filter(duplicated(rbd, cod_curso) == F)) %>%
   
   reduce(left_join, by = c('rbd', 'cod_curso'))
 
@@ -595,7 +623,10 @@ c1_18 <- data.frame(c1_18%>%
     
     prio_fam = ifelse(prioridad_hermano == 1 | prioridad_hijo_funcionario == 1, 1,0),
     prio_fam = max(prio_fam)))
+```
 
+
+```{r procesamiento_postulaciones}
 # 2019
 
 c1_19 <- left_join(c1_19, c1_19%>%
@@ -768,32 +799,99 @@ c1_21 <- data.frame(c1_21%>%
     prio_fam = max(prio_fam)))
 ```
 
+## Combinacion de postulaciones y oferta
+
+### 2018
+```{r}
+a1_18 <- left_join(a1_18, c1_18%>%
+  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
+  group_by(rbd, cod_curso)%>%
+  mutate(
+    demanda_cod_curso = n())%>%
+  select(rbd, cod_curso, demanda_cod_curso)%>%
+  filter(duplicated(rbd, cod_curso) == F))
+
+a1_18 <- a1_18%>%
+  mutate(
+    demanda_cod_curso = ifelse(is.na(demanda_cod_curso) == T, 0, demanda_cod_curso),
+    ciclo_educativo = ifelse(cod_nivel < 1, 0,
+                   ifelse(cod_nivel > 0 & cod_nivel < 9, 1, 2)),
+    macro = ifelse(region == 15 | region == 1| region == 2 | region == 3, 0,
+                   ifelse(region == 4 | region == 5, 1,
+                          ifelse(region == 6 | region == 7 | region == 8 |region == 16, 2,
+                                 ifelse(region == 9 | region == 10 | region == 14, 3,
+                                        ifelse(region == 11 | region == 12, 4, 5))))))
+
+# macro
+#0 = norte
+#1 = centro
+#2 = centro sur
+#3 = sur
+#4 = austral
+#5 = metropolitana
+```
+
+## tabla combinacion postulaciones y oferta
 ```{r}
 
-left_join(c1_18,
-
-c1_18%>%
-    filter(pos_valida == 1, agregada_por_continuidad == 0, preferencia_postulante == 1)%>%
-  group_by(rbd, cod_curso)%>%
+a <- rbind(
+  
+a1_18%>%
+  group_by(cod_jor, ciclo_educativo)%>%
+  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
   mutate(
-        first_pref = n())%>%
-  select(rbd, cod_curso, first_pref),
-
-c1_18%>%
-    filter(pos_valida == 1, agregada_por_continuidad == 0, preferencia_postulante == 2)%>%
-  group_by(rbd, cod_curso)%>%
+    demanda_var = sum(demanda_var_ciclo))%>%
+  ungroup(cod_jor, ciclo_educativo)%>%
   mutate(
-        second_pref = n())%>%
-  select(rbd, cod_curso, second_pref),
+    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
+  select(-demanda_var)%>%
+  rename(var = cod_jor),
 
-c1_18%>%
-    filter(pos_valida == 1, agregada_por_continuidad == 0, preferencia_postulante == 3)%>%
-  group_by(rbd, cod_curso)%>%
+a1_18%>%
+  group_by(con_copago, ciclo_educativo)%>%
+  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
   mutate(
-        third_pref = n())%>%
-  select(rbd, cod_curso, third_pref))%>%
-  view()
+    demanda_var = sum(demanda_var_ciclo))%>%
+  ungroup(con_copago, ciclo_educativo)%>%
+  mutate(
+    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
+  select(-demanda_var)%>%
+  rename(var = con_copago),
 
+a1_18%>%
+  group_by(dep, ciclo_educativo)%>%
+  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
+  mutate(
+    demanda_var = sum(demanda_var_ciclo))%>%
+  ungroup(dep, ciclo_educativo)%>%
+  mutate(
+    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
+  select(-demanda_var)%>%
+  rename(var = dep),
 
+a1_18%>%
+  group_by(zona, ciclo_educativo)%>%
+  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
+  mutate(
+    demanda_var = sum(demanda_var_ciclo))%>%
+  ungroup(zona, ciclo_educativo)%>%
+  mutate(
+    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
+  select(-demanda_var)%>%
+  rename(var = zona),
+
+a1_18%>%
+  group_by(macro, ciclo_educativo)%>%
+  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
+  mutate(
+    demanda_var = sum(demanda_var_ciclo))%>%
+  ungroup(macro, ciclo_educativo)%>%
+  mutate(
+    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
+  select(-demanda_var)%>%
+  rename(var = macro))
+
+#write.csv(a,"C:/Users/geral/OneDrive - University of Iowa/PhD portfolio/1.-Research/2. Sistema de Admisión Escolar/postulaciones_oferta.csv", row.names = FALSE)
 
 ```
+
