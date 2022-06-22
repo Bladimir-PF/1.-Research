@@ -409,6 +409,81 @@ car_ee <- car_ee%>%
 #write.csv(car_ee,"C:/Users/geral/OneDrive - University of Iowa/PhD portfolio/1.-Research/2. Sistema de Admisión Escolar/car_ee.csv", row.names = FALSE)
 ```
 
+### Agregacion de variables de caracterizacion a la oferta
+
+```{r}
+
+# directorio de establecimientos
+dir18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2018/Directorio_Oficial_EE_2018.csv")
+
+dir19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2019/Directorio_Oficial_EE_2019.csv")
+
+dir20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2020/Directorio_Oficial_EE_2020.csv")
+
+dir21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2021/Directorio_Oficial_EE_2021.csv")
+
+# variables de pago matricula y pago mensualidad para oferta
+a1_18 <- left_join(a1_18, dir18%>%
+  select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
+    rename(rbd = RBD), by = 'rbd')
+
+a1_19 <- left_join(a1_19, dir19%>%
+  select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
+    rename(rbd = RBD), by = 'rbd')
+
+a1_20 <- left_join(a1_20, dir20%>%
+  select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
+    rename(rbd = RBD), by = 'rbd')
+
+a1_21 <- left_join(a1_21, dir21%>%
+  select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
+    rename(rbd = RBD), by = 'rbd')
+
+#recodificacion variables pago matricula y pago mensualidad
+a1_18 <- a1_18%>%
+  mutate(
+    PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000' | PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000' | PAGO_MATRICULA == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MATRICULA == 'GRATUITO', 0, NA)))
+
+a1_18 <- a1_18%>%
+  mutate(
+    PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000' | PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000' | PAGO_MENSUAL == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))
+
+a1_19 <- a1_19%>%
+  mutate(
+    PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000' | PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000' | PAGO_MATRICULA == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MATRICULA == 'GRATUITO', 0, NA)))
+
+a1_19 <- a1_19%>%
+  mutate(
+    PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000' | PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000' | PAGO_MENSUAL == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))
+
+a1_20 <- a1_20%>%
+  mutate(
+    PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000' | PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000' | PAGO_MATRICULA == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MATRICULA == 'GRATUITO', 0, NA)))
+
+a1_20 <- a1_20%>%
+  mutate(
+    PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000' | PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000' | PAGO_MENSUAL == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))
+
+a1_21 <- a1_21%>%
+  mutate(
+    PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000' | PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000' | PAGO_MATRICULA == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MATRICULA == 'GRATUITO', 0, NA)))
+
+a1_21 <- a1_21%>%
+  mutate(
+    PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000' | PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000' | PAGO_MENSUAL == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))
+
+#0 = GRAUTITO
+#1 = PAGO
+```
+
 ## Postulantes
 
 ### 2018
@@ -892,6 +967,32 @@ a1_18%>%
   rename(var = macro))
 
 #write.csv(a,"C:/Users/geral/OneDrive - University of Iowa/PhD portfolio/1.-Research/2. Sistema de Admisión Escolar/postulaciones_oferta.csv", row.names = FALSE)
+
+a1_18%>%
+  drop_na()%>%
+  group_by(PAGO_MATRICULA, ciclo_educativo)%>%
+  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
+  mutate(
+    demanda_var = sum(demanda_var_ciclo),
+    prop_demanda_var_ciclo = round(demanda_var_ciclo/sum(demanda_var_ciclo),3)*100)%>%
+  ungroup(PAGO_MATRICULA, ciclo_educativo)%>%
+  mutate(
+    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
+  select(-demanda_var_ciclo, -demanda_var)%>%
+  rename(var = PAGO_MATRICULA)
+
+a1_18%>%
+  drop_na()%>%
+  group_by(PAGO_MENSUAL, ciclo_educativo)%>%
+  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
+  mutate(
+    demanda_var = sum(demanda_var_ciclo),
+    prop_demanda_var_ciclo = round(demanda_var_ciclo/sum(demanda_var_ciclo),3)*100)%>%
+  ungroup(PAGO_MENSUAL, ciclo_educativo)%>%
+  mutate(
+    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
+  select(-demanda_var_ciclo, -demanda_var)%>%
+  rename(var = PAGO_MENSUAL)  
 ```
 
 ## tabla combinacion postulaciones y postulantes
@@ -916,5 +1017,9 @@ b1_18%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
 b1_19%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
 b1_20%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
 b1_21%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
+```
+
+```{r}
+
 ```
 
