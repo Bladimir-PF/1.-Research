@@ -892,6 +892,29 @@ a1_18%>%
   rename(var = macro))
 
 #write.csv(a,"C:/Users/geral/OneDrive - University of Iowa/PhD portfolio/1.-Research/2. Sistema de Admisión Escolar/postulaciones_oferta.csv", row.names = FALSE)
+```
 
+## tabla combinacion postulaciones y postulantes
+```{r}
+b1_18 <- left_join(b1_18, c1_18%>%
+  group_by(mrun)%>%
+  summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
+
+b1_19 <- left_join(b1_19, c1_19%>%
+  group_by(mrun)%>%
+  summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
+
+b1_20 <- left_join(b1_20, c1_20%>%
+  group_by(mrun)%>%
+  summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
+
+b1_21 <- left_join(b1_21, c1_21%>%
+  group_by(mrun)%>%
+  summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
+
+b1_18%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
+b1_19%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
+b1_20%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
+b1_21%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
 ```
 
