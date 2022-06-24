@@ -11,6 +11,7 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+#Packages
 ```{r}
 library(tidyverse)
 library(kableExtra)
@@ -19,82 +20,62 @@ library(readxl)
 
 # Bases
 
-## 2018
-```{r 2018_regular}
-
-#oferta
+## Oferta
+```{r}
 a1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/A1_Oferta_Establecimientos_etapa_regular_2018_Admision_2019.csv")
 
-#postulantes
-b1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/B1_Postulantes_etapa_regular_2018_Admision_2019_PUBL.csv")
-
-#postulaciones
-c1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/C1_Postulaciones_etapa_regular_2018_Admision_2019_PUBL.csv")
-
-#resultados
-d1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/D1_Resultados_etapa_regular_2018_Admision_2019_PUBL.csv")
-```
-
-## 2019
-```{r 2019_regular}
-#oferta
 a1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/A1_Oferta_Establecimientos_etapa_regular_2019_Admision_2020.csv")
 
-#postulantes
-b1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/B1_Postulantes_etapa_regular_2019_Admision_2020_PUBL.csv")
-
-#postulaciones
-c1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/C1_Postulaciones_etapa_regular_2019_Admision_2020_PUBL.csv")
-
-#resultados
-d1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/D1_Resultados_etapa_regular_2019_Admision_2020_PUBL.csv")
-```
-
-## 2020
-```{r 2020_regular}
-
-#oferta
 a1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/A1_Oferta_Establecimientos_etapa_regular_2020_Admision_2021.csv")
 
-#postulantes
-b1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/B1_Postulantes_etapa_regular_2020_Admision_2021_PUBL.csv")
-
-#postulaciones
-c1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/C1_Postulaciones_etapa_regular_2020_Admision_2021_PUBL.csv")
-
-#resultados
-d1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/D1_Resultados_etapa_regular_2020_Admision_2021_PUBL.csv")
+a1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/A1_Oferta_Establecimientos_etapa_regular_2021_Admision_2022.csv")
 ```
 
-## 2021
-```{r 2021_regular}
+## Postulantes
+```{r}
+b1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/B1_Postulantes_etapa_regular_2018_Admision_2019_PUBL.csv")
 
-#oferta
-a1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/A1_Oferta_Establecimientos_etapa_regular_2021_Admision_2022.csv")
+b1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/B1_Postulantes_etapa_regular_2019_Admision_2020_PUBL.csv")
 
-#postulantes
+b1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/B1_Postulantes_etapa_regular_2020_Admision_2021_PUBL.csv")
+
 b1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/B1_Postulantes_etapa_regular_2021_Admision_2022_PUBL.csv")
+```
 
-#postulaciones
+## Postulaciones
+```{r}
+c1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/C1_Postulaciones_etapa_regular_2018_Admision_2019_PUBL.csv")
+
+c1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/C1_Postulaciones_etapa_regular_2019_Admision_2020_PUBL.csv")
+
+c1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/C1_Postulaciones_etapa_regular_2020_Admision_2021_PUBL.csv")
+
 c1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/C1_Postulaciones_etapa_regular_2021_Admision_2022_PUBL.csv")
+```
 
-#resultados
+## Resultados
+```{r}
+d1_18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2018/D1_Resultados_etapa_regular_2018_Admision_2019_PUBL.csv")
+
+d1_19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2019/D1_Resultados_etapa_regular_2019_Admision_2020_PUBL.csv")
+
+d1_20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2020/D1_Resultados_etapa_regular_2020_Admision_2021_PUBL.csv")
+
 d1_21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/SAE/2021/D1_Resultados_etapa_regular_2021_Admision_2022_PUBL.csv")
 ```
 
-# Procesamiento de datos
+# Manipulacion
 
-## Oferta
+## 2018
 
-### 2018
-```{r procesamiento_oferta}
+### Oferta
+```{r}
 #caso unico para rbd 2018
 a1_18 <- a1_18%>%
   mutate(
     unico = duplicated(a1_18$rbd),
     unico = ifelse(unico == FALSE, 1, 0))
 
-#datos para caracterizarcion establecimientos
 mat18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/Resumen de matrícula por establecimiento/Resumen-matricula-EE-2018/Resumen_Matricula_EE_Oficial_2018.csv")
 
 mat18 <- mat18%>%
@@ -122,21 +103,175 @@ NOM_COM_RBD == 'TREHUACO'|
 NOM_COM_RBD == 'YUNGAY', 16, COD_REG_RBD))
 
 mat18 <- mat18 %>%
-  select(RBD, COD_DEPE2, RURAL_RBD, region)%>%
-  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD)
+  select(RBD, COD_DEPE2, RURAL_RBD, region, MAT_TOTAL)%>%
+  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, mat_total = MAT_TOTAL)
 
 a1_18 <- left_join(a1_18, mat18, by = 'rbd')
 
 a1_18 <- a1_18 %>%
-  mutate(
-    dep = ifelse(dep == 1 | dep == 5, 0,1)
-  )
+  mutate(dep = ifelse(dep == 1 | dep == 5, 0,1))
 
-remove(mat18)
+a1_18 <- a1_18%>%
+  mutate(
+    macro = ifelse(region == 15 | region == 1| region == 2 | region == 3, 0,
+                  ifelse(region == 4 | region == 5, 1,
+                  ifelse(region == 6 | region == 7 | region == 8 |region == 16, 2,
+                  ifelse(region == 9 | region == 10 | region == 14, 3,
+                  ifelse(region == 11 | region == 12, 4, 5))))))
+
+# macro
+#0 = norte
+#1 = centro
+#2 = centro sur
+#3 = sur
+#4 = austral
+#5 = metropolitana
+
+dir18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2018/Directorio_Oficial_EE_2018.csv")
+
+a1_18 <- left_join(a1_18, dir18%>%
+  select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
+    rename(rbd = RBD), by = 'rbd')
+
+a1_18 <- a1_18%>%
+  mutate(PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000', 1,
+        ifelse(PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000', 2,
+        ifelse(PAGO_MATRICULA == 'MAS DE $100.000', 3,
+        ifelse(PAGO_MATRICULA == 'GRATUITO', 0, NA)))))
+
+a1_18 <- a1_18%>%
+  mutate(PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000', 1,
+    ifelse(PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000', 2,
+    ifelse(PAGO_MENSUAL == 'MAS DE $100.000', 3, 
+    ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))))
+
+sep18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Alumnos SEP por rbd (MINEDUC)/SEP-2018/Preferentes_Prioritarios_y_Beneficiarios_SEP_2018.csv")
+
+a1_18 <- left_join(a1_18, sep18%>%
+  select(RBD, N_PRIO)%>%
+  rename(rbd = RBD), by = 'rbd')
+
+a1_18 <- a1_18%>%
+  mutate(
+    prop_prio_mattotal = N_PRIO/mat_total,
+    prop_prio_mattotal = ifelse(prop_prio_mattotal <= .25, 0,
+                            ifelse(prop_prio_mattotal >= .251 & prop_prio_mattotal <= .5, 1,2)))
+
+CDB2017 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDB2017.xlsx")
+
+CDM2017 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDM2017.xlsx")
+
+a1_18 <- data.frame(list(a1_18,
+     CDB2017%>%
+  select(RBD, `Categoría Desempeño 2017`)%>%
+  rename(rbd = RBD, CDB_2017 = `Categoría Desempeño 2017`),
+  CDM2017%>%
+  select(RBD, `Categoría Desempeño 2017`)%>%
+  rename(rbd = RBD, CDM_2017 = `Categoría Desempeño 2017`)
+  )%>%
+  reduce(left_join, by = c('rbd')))
+
+a1_18 <- a1_18%>%
+  mutate(
+    CDB_2017 = ifelse(CDB_2017 == 'ALTO', 3,
+                      ifelse(CDB_2017 == 'INSUFICIENTE', 0,
+                             ifelse(CDB_2017 == 'MEDIO', 2,
+                                    ifelse(CDB_2017 == 'MEDIO-BAJO' | CDB_2017 == 'MEDIO-BAJO (NUEVO)', 1, NA)))),
+    CDM_2017 = ifelse(CDM_2017 == 'ALTO', 3,
+                      ifelse(CDM_2017 == 'INSUFICIENTE', 0,
+                             ifelse(CDM_2017 == 'MEDIO', 2,
+                                    ifelse(CDM_2017 == 'MEDIO-BAJO' | CDM_2017 == 'MEDIO-BAJO (NUEVO)', 1, NA)))))
+
+#0 = insuficiente
+#1 = medio bajo
+#2 = medio
+#3 = alto
+
+a1_18 <- data.frame(a1_18%>%
+  group_by(rbd)%>%
+  mutate(
+    CDB_2017 = ifelse(is.na(CDB_2017), -1, CDB_2017),
+    CDM_2017 = ifelse(is.na(CDM_2017), -1, CDM_2017),
+    CDG = max(CDB_2017, CDM_2017),
+    CDG = ifelse(CDG == -1, NA, CDG)))
+
+a1_18 <- a1_18%>%
+  mutate(
+    ciclo_educativo = ifelse(cod_nivel < 1, 0,
+    ifelse(cod_nivel >= 1 & cod_nivel < 9,1,2)))
+
+remove(sep18, mat18, dir18, CDM2017, CDB2017)
 ```
 
-### 2019
-```{r procesamiento_oferta}
+### Postulantes
+```{r}
+b1_18 <- left_join(b1_18, c1_18%>%
+  group_by(mrun)%>%
+  summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
+
+b1_18 <- b1_18%>%
+  mutate(
+    cod_nivel = ifelse(cod_nivel < 1, 0,
+    ifelse(cod_nivel == 1,1,
+    ifelse(cod_nivel > 1 & cod_nivel < 9,2,
+    ifelse(cod_nivel == 9, 3, 4)))))
+```
+
+### Postulaciones
+```{r}
+c1_18 <- data.frame(c1_18%>%
+  arrange(mrun, preferencia_postulante)%>%
+  group_by(mrun, rbd)%>%
+    mutate(pos_valida = ifelse(duplicated(mrun, rbd) == F, 1,0)))
+
+c1_18 <- list(c1_18,
+     
+c1_18%>%
+  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
+  group_by(rbd, cod_curso)%>%
+  mutate(
+    demanda_cod_curso = n())%>%
+  select(rbd, cod_curso, demanda_cod_curso)%>%
+  filter(duplicated(rbd, cod_curso) == F),              
+                       
+c1_18%>%
+  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
+  group_by(rbd, cod_curso)%>%
+  mutate(
+    first_pref = sum(preferencia_postulante == 1))%>%
+  select(rbd, cod_curso, first_pref)%>%
+  filter(duplicated(rbd, cod_curso) == F),
+
+c1_18%>%
+  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
+  group_by(rbd, cod_curso)%>%
+  mutate(
+    second_pref = sum(preferencia_postulante == 2))%>%
+  select(rbd, cod_curso, second_pref)%>%
+  filter(duplicated(rbd, cod_curso) == F),
+
+c1_18%>%
+  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
+  group_by(rbd, cod_curso)%>%
+  mutate(
+    third_pref = sum(preferencia_postulante == 3))%>%
+  select(rbd, cod_curso, third_pref)%>%
+  filter(duplicated(rbd, cod_curso) == F)) %>%
+  
+  reduce(left_join, by = c('rbd', 'cod_curso'))
+
+c1_18 <- data.frame(c1_18%>%
+  group_by(mrun)%>%
+  mutate(
+    alguna_prio = ifelse(prioridad_matriculado == 1 | prioridad_hermano == 1 | prioridad_hijo_funcionario == 1 | prioridad_exalumno == 1, 1,0),
+    alguna_prio = max(alguna_prio),
+    prio_colegio_origen = max(prioridad_matriculado),
+    prio_fam = ifelse(prioridad_hermano == 1 | prioridad_hijo_funcionario == 1, 1,0),
+    prio_fam = max(prio_fam)))
+```
+
+## 2019
+```{r}
 #caso unico para rbd 2019
 a1_19 <- a1_19%>%
   mutate(
@@ -157,113 +292,6 @@ a1_19 <- a1_19 %>%
     dep = ifelse(dep == 1 | dep == 5, 0,1)
   )
 
-remove(mat19)
-```
-
-### 2020
-```{r procesamiento_oferta}
-# Caso unico para rbd 2020
-a1_20 <- a1_20%>%
-  mutate(
-    unico = duplicated(a1_20$rbd),
-    unico = ifelse(unico == FALSE, 1, 0))
-
-# datos para caracterizarcion establecimientos
-mat20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/Resumen de matrícula por establecimiento/Resumen-matricula-EE-2020/Resumen_Matricula_EE_Oficial_2020.csv")
-
-mat20 <- mat20 %>%
-  select(RBD, COD_DEPE2, RURAL_RBD, COD_REG_RBD)%>%
-  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, region = COD_REG_RBD)
-
-a1_20 <- left_join(a1_20, mat20, by = 'rbd')
-
-a1_20 <- a1_20 %>%
-  mutate(
-    dep = ifelse(dep == 1 | dep == 5, 0,1)
-  )
-
-remove(mat20)
-```
-
-### 2021
-```{r procesamiento_oferta}
-#Caso unico para rbd 2021
-a1_21 <- a1_21%>%
-  mutate(
-    unico = duplicated(a1_21$rbd),
-    unico = ifelse(unico == FALSE, 1, 0))
-
-#datos para caracterizarcion establecimientos
-mat21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/Resumen de matrícula por establecimiento/Resumen-matricula-EE-2021/Resumen_Matricula_EE_Oficial_2021.csv")
-
-mat21 <- mat21 %>%
-  select(RBD, COD_DEPE2, RURAL_RBD, COD_REG_RBD)%>%
-  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, region = COD_REG_RBD)
-
-a1_21 <- left_join(a1_21, mat21, by = 'rbd')
-
-a1_21 <- a1_21 %>%
-  mutate(
-    dep = ifelse(dep == 1 | dep == 5, 0,1)
-  )
-
-remove(mat21)
-```
-
-### tabla oferta
-```{r tabla_caracterizacion_oferta}
-# 2018
-car18 <- rbind(
-  
-a1_18 %>%
-  filter(unico == 1)%>%
-  count(cod_jor)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = cod_jor),
-
-a1_18 %>%
-  filter(unico == 1)%>%
-  count(con_copago)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = con_copago),
-
-a1_18 %>%
-  filter(unico == 1)%>%
-  count(dep)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = dep),
-
-a1_18 %>%
-  filter(unico == 1)%>%
-  count(zona)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = zona),
-
-a1_18 %>%
-  filter(unico == 1)%>%
-  count(region)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = region))
-
-car18 <- dplyr::add_row(
-  car18,
-  var = 13,
-  n = 0,
-  prop = 0,
-  .before = 22
-)
-
-# 2019
 car19 <- rbind(
   
 a1_19 %>%
@@ -306,151 +334,12 @@ a1_19 %>%
   )%>%
   rename(var = region))
 
-# 2020
-car20 <- rbind(
-  
-a1_20 %>%
-  filter(unico == 1)%>%
-  count(cod_jor)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = cod_jor),
-
-a1_20 %>%
-  filter(unico == 1)%>%
-  count(con_copago)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = con_copago),
-
-a1_20 %>%
-  filter(unico == 1)%>%
-  count(dep)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = dep),
-
-a1_20 %>%
-  filter(unico == 1)%>%
-  count(zona)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = zona),
-
-a1_20 %>%
-  filter(unico == 1)%>%
-  count(region)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = region))
-
-# 2019
-car21 <- rbind(
-  
-a1_21 %>%
-  filter(unico == 1)%>%
-  count(cod_jor)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = cod_jor),
-
-a1_21 %>%
-  filter(unico == 1)%>%
-  count(con_copago)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = con_copago),
-
-a1_21 %>%
-  filter(unico == 1)%>%
-  count(dep)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = dep),
-
-a1_21 %>%
-  filter(unico == 1)%>%
-  count(zona)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = zona),
-
-a1_21 %>%
-  filter(unico == 1)%>%
-  count(region)%>%
-  mutate(
-    prop = round(n/sum(n),3) * 100
-  )%>%
-  rename(var = region))
-
-#resumen de caracterizacion
-car_ee <- dplyr::bind_cols(
-  car18,car19$n,car19$prop,car20$n,car20$prop,car21$n,car21$prop)
-
-car_ee <- car_ee%>%
-  rename(
-    n18 = n,
-    prop18 = prop,
-    n19 = ...4,
-    prop19 = ...5,
-    n20 = ...6,
-    prop20 = ...7,
-    n21 = ...8,
-    prop21 = ...9)
-
-#write.csv(car_ee,"C:/Users/geral/OneDrive - University of Iowa/PhD portfolio/1.-Research/2. Sistema de Admisión Escolar/car_ee.csv", row.names = FALSE)
-```
-
-### Agregacion de variables de caracterizacion a la oferta
-
-```{r}
-
-# directorio de establecimientos
-dir18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2018/Directorio_Oficial_EE_2018.csv")
-
 dir19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2019/Directorio_Oficial_EE_2019.csv")
-
-dir20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2020/Directorio_Oficial_EE_2020.csv")
-
-dir21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2021/Directorio_Oficial_EE_2021.csv")
-
-# variables de pago matricula y pago mensualidad para oferta
-a1_18 <- left_join(a1_18, dir18%>%
-  select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
-    rename(rbd = RBD), by = 'rbd')
 
 a1_19 <- left_join(a1_19, dir19%>%
   select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
     rename(rbd = RBD), by = 'rbd')
 
-a1_20 <- left_join(a1_20, dir20%>%
-  select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
-    rename(rbd = RBD), by = 'rbd')
-
-a1_21 <- left_join(a1_21, dir21%>%
-  select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
-    rename(rbd = RBD), by = 'rbd')
-
-#recodificacion variables pago matricula y pago mensualidad
-a1_18 <- a1_18%>%
-  mutate(
-    PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000' | PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000' | PAGO_MATRICULA == 'MAS DE $100.000', 1, 
-                            ifelse(PAGO_MATRICULA == 'GRATUITO', 0, NA)))
-
-a1_18 <- a1_18%>%
-  mutate(
-    PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000' | PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000' | PAGO_MENSUAL == 'MAS DE $100.000', 1, 
-                            ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))
-
 a1_19 <- a1_19%>%
   mutate(
     PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000' | PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000' | PAGO_MATRICULA == 'MAS DE $100.000', 1, 
@@ -460,80 +349,16 @@ a1_19 <- a1_19%>%
   mutate(
     PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000' | PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000' | PAGO_MENSUAL == 'MAS DE $100.000', 1, 
                             ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))
-
-a1_20 <- a1_20%>%
-  mutate(
-    PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000' | PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000' | PAGO_MATRICULA == 'MAS DE $100.000', 1, 
-                            ifelse(PAGO_MATRICULA == 'GRATUITO', 0, NA)))
-
-a1_20 <- a1_20%>%
-  mutate(
-    PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000' | PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000' | PAGO_MENSUAL == 'MAS DE $100.000', 1, 
-                            ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))
-
-a1_21 <- a1_21%>%
-  mutate(
-    PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000' | PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000' | PAGO_MATRICULA == 'MAS DE $100.000', 1, 
-                            ifelse(PAGO_MATRICULA == 'GRATUITO', 0, NA)))
-
-a1_21 <- a1_21%>%
-  mutate(
-    PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000' | PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000' | PAGO_MENSUAL == 'MAS DE $100.000', 1, 
-                            ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))
-
-#0 = GRAUTITO
-#1 = PAGO
-
-# alumnos prioritarios y preferentes
-sep18 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Alumnos SEP por rbd (MINEDUC)/SEP-2018/Preferentes_Prioritarios_y_Beneficiarios_SEP_2018.csv")
 
 sep19 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Alumnos SEP por rbd (MINEDUC)/SEP-2019/Preferentes_Prioritarios_y_Beneficiarios_SEP_2019.csv")
-
-sep20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Alumnos SEP por rbd (MINEDUC)/SEP-2020/Preferentes_Prioritarios_y_Beneficiarios_SEP_2020.csv")
-
-sep21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Alumnos SEP por rbd (MINEDUC)/SEP-2021/Preferentes_Prioritarios_y_Beneficiarios_SEP_2021.csv")
-
-a1_18 <- left_join(a1_18, sep18%>%
-  select(RBD, N_PRIO)%>%
-  rename(rbd = RBD), by = 'rbd')
 
 a1_19 <- left_join(a1_19, sep19%>%
   select(RBD, N_PRIO)%>%
   rename(rbd = RBD), by = 'rbd')
 
-a1_20 <- left_join(a1_20, sep20%>%
-  select(RBD, N_PRIO)%>%
-  rename(rbd = RBD), by = 'rbd')
-
-a1_21 <- left_join(a1_21, sep21%>%
-  select(RBD, N_PRIO)%>%
-  rename(rbd = RBD), by = 'rbd')
-
-# matricula total del establecimiento
-
-a1_18 <- left_join(a1_18, mat18%>%
-  select(RBD, MAT_TOTAL)%>%
-  rename(rbd = RBD, mat_total = MAT_TOTAL), by = 'rbd')
-
 a1_19 <- left_join(a1_19, mat19%>%
   select(RBD, MAT_TOTAL)%>%
   rename(rbd = RBD, mat_total = MAT_TOTAL), by = 'rbd')
-
-a1_20 <- left_join(a1_20, mat20%>%
-  select(RBD, MAT_TOTAL)%>%
-  rename(rbd = RBD, mat_total = MAT_TOTAL), by = 'rbd')
-
-a1_21 <- left_join(a1_21, mat21%>%
-  select(RBD, MAT_TOTAL)%>%
-  rename(rbd = RBD, mat_total = MAT_TOTAL), by = 'rbd')
-
-# proporcion de prioritarios respecto al total de matricula
-
-a1_18 <- a1_18%>%
-  mutate(
-    prop_prio_mattotal = N_PRIO/mat_total,
-    prop_prio_mattotal = ifelse(prop_prio_mattotal <= .25, 0,
-                            ifelse(prop_prio_mattotal >= .251 & prop_prio_mattotal <= .5, 1,2)))
 
 a1_19 <- a1_19%>%
   mutate(
@@ -541,106 +366,9 @@ a1_19 <- a1_19%>%
     prop_prio_mattotal = ifelse(prop_prio_mattotal <= .25, 0,
                             ifelse(prop_prio_mattotal >= .251 & prop_prio_mattotal <= .5, 1,2)))
 
-a1_20 <- a1_20%>%
-  mutate(
-    prop_prio_mattotal = N_PRIO/mat_total,
-    prop_prio_mattotal = ifelse(prop_prio_mattotal <= .25, 0,
-                            ifelse(prop_prio_mattotal >= .251 & prop_prio_mattotal <= .5, 1,2)))
-
-a1_21 <- a1_21%>%
-  mutate(
-    prop_prio_mattotal = N_PRIO/mat_total,
-    prop_prio_mattotal = ifelse(prop_prio_mattotal <= .25, 0,
-                            ifelse(prop_prio_mattotal >= .251 & prop_prio_mattotal <= .5, 1,2)))
-
-# Variables Agencia de Calidad de la Educacion
-
-CDB2017 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDB2017.xlsx")
-
-CDM2017 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDM2017.xlsx")
-
 CDB2018 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDB2018.xlsx")
 
-CDM2019 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDM2019.xlsx")
-
-CDB2019 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDB2019.xlsx")
-
 CDM2018 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDM2018.xlsx")
-
-#2018
-
-a1_18 <- list(a1_18,
-     CDB2017%>%
-  select(RBD, `Categoría Desempeño 2017`)%>%
-  rename(rbd = RBD, CDB_2017 = `Categoría Desempeño 2017`),
-  CDM2017%>%
-  select(RBD, `Categoría Desempeño 2017`)%>%
-  rename(rbd = RBD, CDM_2017 = `Categoría Desempeño 2017`)
-  )%>%
-  reduce(left_join, by = c('rbd'))
-
-a1_18 <- a1_18%>%
-  mutate(
-    CDB_2017 = ifelse(CDB_2017 == 'ALTO', 3,
-                      ifelse(CDB_2017 == 'INSUFICIENTE', 0,
-                             ifelse(CDB_2017 == 'MEDIO', 2,
-                                    ifelse(CDB_2017 == 'MEDIO-BAJO' | CDB_2017 == 'MEDIO-BAJO (NUEVO)', 1, NA)))),
-    CDM_2017 = ifelse(CDM_2017 == 'ALTO', 3,
-                      ifelse(CDM_2017 == 'INSUFICIENTE', 0,
-                             ifelse(CDM_2017 == 'MEDIO', 2,
-                                    ifelse(CDM_2017 == 'MEDIO-BAJO' | CDM_2017 == 'MEDIO-BAJO (NUEVO)', 1, NA)))))
-
-#0 = insuficiente
-#1 = medio bajo
-#2 = medio
-#3 = alto
-
-a1_18 <- a1_18%>%
-  group_by(rbd)%>%
-  mutate(
-    CDB_2017 = ifelse(is.na(CDB_2017), -1, CDB_2017),
-    CDM_2017 = ifelse(is.na(CDM_2017), -1, CDM_2017),
-    CDG = max(CDB_2017, CDM_2017),
-    CDG = ifelse(CDG == -1, NA, CDG))
-```
-
-## Postulantes
-
-### 2018
-```{r procesamiento_postulantes}
-#2018
-pos18 <- rbind(b1_18%>%
-  count(cod_nivel)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = cod_nivel),
-
-b1_18%>%
-  count(es_mujer)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = es_mujer),
-
-b1_18%>%
-  count(prioritario)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = prioritario),
-
-b1_18%>%
-  count(alto_rendimiento)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = alto_rendimiento))
-```
-
-### 2019
-```{r procesamiento_postulantes}
-# 2019
 
 pos19 <- rbind(b1_19%>%
   count(cod_nivel)%>%
@@ -669,160 +397,6 @@ b1_19%>%
     prop = round(n/sum(n),3)*100
   )%>%
   rename(var = alto_rendimiento))
-```
-
-### 2020
-```{r procesamiento_postulantes}
-# 2020
-pos20 <- rbind(b1_20%>%
-  count(cod_nivel)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = cod_nivel),
-
-b1_20%>%
-  count(es_mujer)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = es_mujer),
-
-b1_20%>%
-  count(prioritario)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = prioritario),
-
-b1_20%>%
-  count(alto_rendimiento)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = alto_rendimiento))
-```
-
-### 2021
-```{r procesamiento_postulantes}
-#2021
-pos21 <- rbind(b1_21%>%
-  count(cod_nivel)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = cod_nivel),
-
-b1_21%>%
-  count(es_mujer)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = es_mujer),
-
-b1_21%>%
-  count(prioritario)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = prioritario),
-
-b1_21%>%
-  count(alto_rendimiento)%>%
-  mutate(
-    prop = round(n/sum(n),3)*100
-  )%>%
-  rename(var = alto_rendimiento))
-```
-
-### tabla postulantes
-```{r tabla_caracterizacion_postulantes}
-car_pos <- dplyr::bind_cols(
-  pos18$var,pos18$prop,pos19$prop,pos20$prop,pos21$prop)
-
-car_pos <- car_pos%>%
-  rename(
-    var = ...1,
-    prop18 = ...2,
-    prop19 = ...3,
-    prop20 = ...4,
-    prop21 = ...5)
-
-kable(car_pos)%>%
-  kable_styling(full_width = F)
-
-#write.csv(car_pos,"C:/Users/geral/OneDrive - University of Iowa/PhD portfolio/1.-Research/2. Sistema de Admisión Escolar/car_pos.csv", row.names = FALSE)
-```
-
-## Postulaciones
-
-### 2018
-```{r procesamiento_postulaciones}
-# 2018
-
-c1_18 <- left_join(c1_18, c1_18%>%
-  count(mrun, rbd)%>%
-  rename(repeticiones = n))
-
-c1_18 <- data.frame(c1_18%>%
-  arrange(mrun, preferencia_postulante)%>%
-  group_by(mrun, rbd)%>%
-    mutate(
-      pos_valida = ifelse(duplicated(mrun, rbd) == F, 1,0)
-      ))
-
-c1_18 <- list(c1_18,
-     
-c1_18%>%
-  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
-  group_by(rbd, cod_curso)%>%
-  mutate(
-    demanda_cod_curso = n())%>%
-  select(rbd, cod_curso, demanda_cod_curso)%>%
-  filter(duplicated(rbd, cod_curso) == F),              
-                       
-c1_18%>%
-  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
-  group_by(rbd, cod_curso)%>%
-  mutate(
-    first_pref = sum(preferencia_postulante == 1))%>%
-  select(rbd, cod_curso, first_pref)%>%
-  filter(duplicated(rbd, cod_curso) == F),
-
-c1_18%>%
-  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
-  group_by(rbd, cod_curso)%>%
-  mutate(
-    second_pref = sum(preferencia_postulante == 2))%>%
-  select(rbd, cod_curso, second_pref)%>%
-  filter(duplicated(rbd, cod_curso) == F),
-
-c1_18%>%
-  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
-  group_by(rbd, cod_curso)%>%
-  mutate(
-    third_pref = sum(preferencia_postulante == 3))%>%
-  select(rbd, cod_curso, third_pref)%>%
-  filter(duplicated(rbd, cod_curso) == F)) %>%
-  
-  reduce(left_join, by = c('rbd', 'cod_curso'))
-
-c1_18 <- data.frame(c1_18%>%
-  group_by(mrun)%>%
-  mutate(
-    
-    alguna_prio = ifelse(prioridad_matriculado == 1 | prioridad_hermano == 1 | prioridad_hijo_funcionario == 1 | prioridad_exalumno == 1, 1,0),
-    alguna_prio = max(alguna_prio),
-    
-    prio_colegio_origen = max(prioridad_matriculado),
-    
-    prio_fam = ifelse(prioridad_hermano == 1 | prioridad_hijo_funcionario == 1, 1,0),
-    prio_fam = max(prio_fam)))
-```
-
-
-```{r procesamiento_postulaciones}
-# 2019
 
 c1_19 <- left_join(c1_19, c1_19%>%
   count(mrun, rbd)%>%
@@ -878,6 +452,172 @@ c1_19 <- data.frame(c1_19%>%
     
     prio_fam = ifelse(prioridad_hermano == 1 | prioridad_hijo_funcionario == 1, 1,0),
     prio_fam = max(prio_fam)))
+
+a1_19%>%
+  drop_na()%>%
+  group_by(prop_prio_mattotal)%>%
+  summarise(
+    s = sum(demanda_cod_curso))%>%
+  mutate(
+    prop = round(s/sum(s),3)*100
+  )
+
+a1_19%>%
+  group_by(con_copago)%>%
+  summarise(
+    s = sum(demanda_cod_curso))%>%
+  mutate(
+    prop = round(s/sum(s),3)*100
+  )
+
+a1_19%>%
+  drop_na()%>%
+  group_by(dep)%>%
+  summarise(
+    s = sum(demanda_cod_curso))%>%
+  mutate(
+    prop = round(s/sum(s),3)*100
+  )
+
+b1_19 <- left_join(b1_19, c1_19%>%
+  group_by(mrun)%>%
+  summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
+
+
+b1_20 <- left_join(b1_20, c1_20%>%
+  group_by(mrun)%>%
+  summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
+
+```
+
+## 2020
+```{r}
+# Caso unico para rbd 2020
+a1_20 <- a1_20%>%
+  mutate(
+    unico = duplicated(a1_20$rbd),
+    unico = ifelse(unico == FALSE, 1, 0))
+
+# datos para caracterizarcion establecimientos
+mat20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/Resumen de matrícula por establecimiento/Resumen-matricula-EE-2020/Resumen_Matricula_EE_Oficial_2020.csv")
+
+mat20 <- mat20 %>%
+  select(RBD, COD_DEPE2, RURAL_RBD, COD_REG_RBD)%>%
+  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, region = COD_REG_RBD)
+
+a1_20 <- left_join(a1_20, mat20, by = 'rbd')
+
+a1_20 <- a1_20 %>%
+  mutate(
+    dep = ifelse(dep == 1 | dep == 5, 0,1)
+  )
+
+# 2020
+car20 <- rbind(
+  
+a1_20 %>%
+  filter(unico == 1)%>%
+  count(cod_jor)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = cod_jor),
+
+a1_20 %>%
+  filter(unico == 1)%>%
+  count(con_copago)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = con_copago),
+
+a1_20 %>%
+  filter(unico == 1)%>%
+  count(dep)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = dep),
+
+a1_20 %>%
+  filter(unico == 1)%>%
+  count(zona)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = zona),
+
+a1_20 %>%
+  filter(unico == 1)%>%
+  count(region)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = region))
+
+dir20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2020/Directorio_Oficial_EE_2020.csv")
+
+a1_20 <- left_join(a1_20, dir20%>%
+  select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
+    rename(rbd = RBD), by = 'rbd')
+
+a1_20 <- a1_20%>%
+  mutate(
+    PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000' | PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000' | PAGO_MATRICULA == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MATRICULA == 'GRATUITO', 0, NA)))
+
+a1_20 <- a1_20%>%
+  mutate(
+    PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000' | PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000' | PAGO_MENSUAL == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))
+
+sep20 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Alumnos SEP por rbd (MINEDUC)/SEP-2020/Preferentes_Prioritarios_y_Beneficiarios_SEP_2020.csv")
+
+a1_20 <- left_join(a1_20, sep20%>%
+  select(RBD, N_PRIO)%>%
+  rename(rbd = RBD), by = 'rbd')
+
+a1_20 <- left_join(a1_20, mat20%>%
+  select(RBD, MAT_TOTAL)%>%
+  rename(rbd = RBD, mat_total = MAT_TOTAL), by = 'rbd')
+
+a1_20 <- a1_20%>%
+  mutate(
+    prop_prio_mattotal = N_PRIO/mat_total,
+    prop_prio_mattotal = ifelse(prop_prio_mattotal <= .25, 0,
+                            ifelse(prop_prio_mattotal >= .251 & prop_prio_mattotal <= .5, 1,2)))
+
+CDM2019 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDM2019.xlsx")
+
+CDB2019 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDB2019.xlsx")
+
+pos20 <- rbind(b1_20%>%
+  count(cod_nivel)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = cod_nivel),
+
+b1_20%>%
+  count(es_mujer)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = es_mujer),
+
+b1_20%>%
+  count(prioritario)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = prioritario),
+
+b1_20%>%
+  count(alto_rendimiento)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = alto_rendimiento))
 
 #2020
 
@@ -936,6 +676,162 @@ c1_20 <- data.frame(c1_20%>%
     prio_fam = ifelse(prioridad_hermano == 1 | prioridad_hijo_funcionario == 1, 1,0),
     prio_fam = max(prio_fam)))
 
+#2020
+a1_20%>%
+  drop_na()%>%
+  group_by(prop_prio_mattotal)%>%
+  summarise(
+    s = sum(demanda_cod_curso))%>%
+  mutate(
+    prop = round(s/sum(s),3)*100
+  )
+
+a1_20%>%
+  group_by(con_copago)%>%
+  summarise(
+    s = sum(demanda_cod_curso))%>%
+  mutate(
+    prop = round(s/sum(s),3)*100
+  )
+
+a1_20%>%
+  drop_na()%>%
+  group_by(dep)%>%
+  summarise(
+    s = sum(demanda_cod_curso))%>%
+  mutate(
+    prop = round(s/sum(s),3)*100
+  )
+
+
+
+```
+
+## 2021
+```{r}
+#Caso unico para rbd 2021
+a1_21 <- a1_21%>%
+  mutate(
+    unico = duplicated(a1_21$rbd),
+    unico = ifelse(unico == FALSE, 1, 0))
+
+#datos para caracterizarcion establecimientos
+mat21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/Resumen de matrícula por establecimiento/Resumen-matricula-EE-2021/Resumen_Matricula_EE_Oficial_2021.csv")
+
+mat21 <- mat21 %>%
+  select(RBD, COD_DEPE2, RURAL_RBD, COD_REG_RBD)%>%
+  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, region = COD_REG_RBD)
+
+a1_21 <- left_join(a1_21, mat21, by = 'rbd')
+
+a1_21 <- a1_21 %>%
+  mutate(
+    dep = ifelse(dep == 1 | dep == 5, 0,1)
+  )
+
+# 2021
+car21 <- rbind(
+  
+a1_21 %>%
+  filter(unico == 1)%>%
+  count(cod_jor)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = cod_jor),
+
+a1_21 %>%
+  filter(unico == 1)%>%
+  count(con_copago)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = con_copago),
+
+a1_21 %>%
+  filter(unico == 1)%>%
+  count(dep)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = dep),
+
+a1_21 %>%
+  filter(unico == 1)%>%
+  count(zona)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = zona),
+
+a1_21 %>%
+  filter(unico == 1)%>%
+  count(region)%>%
+  mutate(
+    prop = round(n/sum(n),3) * 100
+  )%>%
+  rename(var = region))
+
+dir21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Directorio Establecimientos/Directorio-oficial-EE-2021/Directorio_Oficial_EE_2021.csv")
+
+a1_21 <- left_join(a1_21, dir21%>%
+  select(RBD, PAGO_MATRICULA, PAGO_MENSUAL)%>%
+    rename(rbd = RBD), by = 'rbd')
+
+a1_21 <- a1_21%>%
+  mutate(
+    PAGO_MATRICULA = ifelse(PAGO_MATRICULA == '$1.000 A $10.000' | PAGO_MATRICULA == '$10.001 A $25.000' | PAGO_MATRICULA == '$25.001 A $50.000' | PAGO_MATRICULA == '$50.001 A $100.000' | PAGO_MATRICULA == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MATRICULA == 'GRATUITO', 0, NA)))
+
+a1_21 <- a1_21%>%
+  mutate(
+    PAGO_MENSUAL = ifelse(PAGO_MENSUAL == '$1.000 A $10.000' | PAGO_MENSUAL == '$10.001 A $25.000' | PAGO_MENSUAL == '$25.001 A $50.000' | PAGO_MENSUAL == '$50.001 A $100.000' | PAGO_MENSUAL == 'MAS DE $100.000', 1, 
+                            ifelse(PAGO_MENSUAL == 'GRATUITO', 0, NA)))
+
+sep21 <- read.csv2("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/1. Datos Abiertos MINEDUC/Alumnos SEP por rbd (MINEDUC)/SEP-2021/Preferentes_Prioritarios_y_Beneficiarios_SEP_2021.csv")
+
+a1_21 <- left_join(a1_21, sep21%>%
+  select(RBD, N_PRIO)%>%
+  rename(rbd = RBD), by = 'rbd')
+  
+a1_21 <- left_join(a1_21, mat21%>%
+  select(RBD, MAT_TOTAL)%>%
+  rename(rbd = RBD, mat_total = MAT_TOTAL), by = 'rbd')
+
+a1_21 <- a1_21%>%
+  mutate(
+    prop_prio_mattotal = N_PRIO/mat_total,
+    prop_prio_mattotal = ifelse(prop_prio_mattotal <= .25, 0,
+                            ifelse(prop_prio_mattotal >= .251 & prop_prio_mattotal <= .5, 1,2)))
+
+pos21 <- rbind(b1_21%>%
+  count(cod_nivel)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = cod_nivel),
+
+b1_21%>%
+  count(es_mujer)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = es_mujer),
+
+b1_21%>%
+  count(prioritario)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = prioritario),
+
+b1_21%>%
+  count(alto_rendimiento)%>%
+  mutate(
+    prop = round(n/sum(n),3)*100
+  )%>%
+  rename(var = alto_rendimiento))
+
 # 2021
 
 c1_21 <- left_join(c1_21, c1_21%>%
@@ -992,210 +888,6 @@ c1_21 <- data.frame(c1_21%>%
     
     prio_fam = ifelse(prioridad_hermano == 1 | prioridad_hijo_funcionario == 1, 1,0),
     prio_fam = max(prio_fam)))
-```
-
-## Combinacion de postulaciones y oferta
-
-### 2018
-```{r}
-a1_18 <- left_join(a1_18, c1_18%>%
-  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
-  group_by(rbd, cod_curso)%>%
-  mutate(
-    demanda_cod_curso = n())%>%
-  select(rbd, cod_curso, demanda_cod_curso)%>%
-  filter(duplicated(rbd, cod_curso) == F))
-
-a1_18 <- a1_18%>%
-  mutate(
-    demanda_cod_curso = ifelse(is.na(demanda_cod_curso) == T, 0, demanda_cod_curso),
-    ciclo_educativo = ifelse(cod_nivel < 1, 0,
-                   ifelse(cod_nivel > 0 & cod_nivel < 9, 1, 2)),
-    macro = ifelse(region == 15 | region == 1| region == 2 | region == 3, 0,
-                   ifelse(region == 4 | region == 5, 1,
-                          ifelse(region == 6 | region == 7 | region == 8 |region == 16, 2,
-                                 ifelse(region == 9 | region == 10 | region == 14, 3,
-                                        ifelse(region == 11 | region == 12, 4, 5))))))
-
-# macro
-#0 = norte
-#1 = centro
-#2 = centro sur
-#3 = sur
-#4 = austral
-#5 = metropolitana
-```
-
-## tabla combinacion postulaciones y oferta
-```{r}
-
-a <- rbind(
-  
-a1_18%>%
-  group_by(cod_jor, ciclo_educativo)%>%
-  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
-  mutate(
-    demanda_var = sum(demanda_var_ciclo))%>%
-  ungroup(cod_jor, ciclo_educativo)%>%
-  mutate(
-    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
-  select(-demanda_var)%>%
-  rename(var = cod_jor),
-
-a1_18%>%
-  group_by(con_copago, ciclo_educativo)%>%
-  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
-  mutate(
-    demanda_var = sum(demanda_var_ciclo))%>%
-  ungroup(con_copago, ciclo_educativo)%>%
-  mutate(
-    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
-  select(-demanda_var)%>%
-  rename(var = con_copago),
-
-a1_18%>%
-  group_by(dep, ciclo_educativo)%>%
-  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
-  mutate(
-    demanda_var = sum(demanda_var_ciclo))%>%
-  ungroup(dep, ciclo_educativo)%>%
-  mutate(
-    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
-  select(-demanda_var)%>%
-  rename(var = dep),
-
-a1_18%>%
-  group_by(zona, ciclo_educativo)%>%
-  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
-  mutate(
-    demanda_var = sum(demanda_var_ciclo))%>%
-  ungroup(zona, ciclo_educativo)%>%
-  mutate(
-    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
-  select(-demanda_var)%>%
-  rename(var = zona),
-
-a1_18%>%
-  group_by(macro, ciclo_educativo)%>%
-  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
-  mutate(
-    demanda_var = sum(demanda_var_ciclo))%>%
-  ungroup(macro, ciclo_educativo)%>%
-  mutate(
-    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
-  select(-demanda_var)%>%
-  rename(var = macro))
-
-#write.csv(a,"C:/Users/geral/OneDrive - University of Iowa/PhD portfolio/1.-Research/2. Sistema de Admisión Escolar/postulaciones_oferta.csv", row.names = FALSE)
-
-#a1_18%>%
-  drop_na()%>%
-  group_by(PAGO_MATRICULA, ciclo_educativo)%>%
-  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
-  mutate(
-    demanda_var = sum(demanda_var_ciclo),
-    prop_demanda_var_ciclo = round(demanda_var_ciclo/sum(demanda_var_ciclo),3)*100)%>%
-  ungroup(PAGO_MATRICULA, ciclo_educativo)%>%
-  mutate(
-    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
-  select(-demanda_var_ciclo, -demanda_var)%>%
-  rename(var = PAGO_MATRICULA)
-
-#a1_18%>%
-  drop_na()%>%
-  group_by(PAGO_MENSUAL, ciclo_educativo)%>%
-  summarise(demanda_var_ciclo = sum(demanda_cod_curso))%>%
-  mutate(
-    demanda_var = sum(demanda_var_ciclo),
-    prop_demanda_var_ciclo = round(demanda_var_ciclo/sum(demanda_var_ciclo),3)*100)%>%
-  ungroup(PAGO_MENSUAL, ciclo_educativo)%>%
-  mutate(
-    prop_marginal_var = round(demanda_var/sum(demanda_var_ciclo),3)*100) %>%
-  select(-demanda_var_ciclo, -demanda_var)%>%
-  rename(var = PAGO_MENSUAL)
-
-#proporcion alumnos prioritarios en el establecimiento
-  
-#2018
-a1_18%>%
-  drop_na()%>%
-  group_by(prop_prio_mattotal)%>%
-  summarise(
-    s = sum(demanda_cod_curso))%>%
-  mutate(
-    prop = round(s/sum(s),3)*100
-  )
-
-a1_18%>%
-  group_by(con_copago)%>%
-  summarise(
-    s = sum(demanda_cod_curso))%>%
-  mutate(
-    prop = round(s/sum(s),3)*100
-  )
-
-a1_18%>%
-  drop_na()%>%
-  group_by(dep)%>%
-  summarise(
-    s = sum(demanda_cod_curso))%>%
-  mutate(
-    prop = round(s/sum(s),3)*100
-  )
-
-#2019
-a1_19%>%
-  drop_na()%>%
-  group_by(prop_prio_mattotal)%>%
-  summarise(
-    s = sum(demanda_cod_curso))%>%
-  mutate(
-    prop = round(s/sum(s),3)*100
-  )
-
-a1_19%>%
-  group_by(con_copago)%>%
-  summarise(
-    s = sum(demanda_cod_curso))%>%
-  mutate(
-    prop = round(s/sum(s),3)*100
-  )
-
-a1_19%>%
-  drop_na()%>%
-  group_by(dep)%>%
-  summarise(
-    s = sum(demanda_cod_curso))%>%
-  mutate(
-    prop = round(s/sum(s),3)*100
-  )
-
-#2020
-a1_20%>%
-  drop_na()%>%
-  group_by(prop_prio_mattotal)%>%
-  summarise(
-    s = sum(demanda_cod_curso))%>%
-  mutate(
-    prop = round(s/sum(s),3)*100
-  )
-
-a1_20%>%
-  group_by(con_copago)%>%
-  summarise(
-    s = sum(demanda_cod_curso))%>%
-  mutate(
-    prop = round(s/sum(s),3)*100
-  )
-
-a1_20%>%
-  drop_na()%>%
-  group_by(dep)%>%
-  summarise(
-    s = sum(demanda_cod_curso))%>%
-  mutate(
-    prop = round(s/sum(s),3)*100
-  )
 
 # 2021
 a1_21%>%
@@ -1235,33 +927,136 @@ a1_18%>%
   mutate(
     prop = round(s/sum(s),3)*100
   )
-```
-
-## tabla combinacion postulaciones y postulantes
-```{r}
-b1_18 <- left_join(b1_18, c1_18%>%
-  group_by(mrun)%>%
-  summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
-
-b1_19 <- left_join(b1_19, c1_19%>%
-  group_by(mrun)%>%
-  summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
-
-b1_20 <- left_join(b1_20, c1_20%>%
-  group_by(mrun)%>%
-  summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
 
 b1_21 <- left_join(b1_21, c1_21%>%
   group_by(mrun)%>%
   summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
-
-b1_18%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
-b1_19%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
-b1_20%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
-b1_21%>%count(continuidad)%>%mutate(prop = round(n/sum(n),3)*100)
 ```
 
+# Tabla 1
 ```{r}
+#2018
+a1_18 %>%
+  filter(unico == 1)%>%
+  count(cod_jor)%>%
+  mutate(prop = round(n/sum(n),3) * 100)
 
+a1_18 %>%
+  filter(unico == 1)%>%
+  count(con_copago)%>%
+  mutate(prop = round(n/sum(n),3) * 100)
+
+a1_18 %>%
+  filter(unico == 1)%>%
+  count(dep)%>%
+  mutate(prop = round(n/sum(n),3) * 100)
+
+a1_18 %>%
+  filter(unico == 1)%>%
+  count(zona)%>%
+  mutate(prop = round(n/sum(n),3) * 100)
+
+a1_18 %>%
+  filter(unico == 1)%>%
+  count(macro)%>%
+  mutate(prop = round(n/sum(n),3) * 100)
 ```
 
+# Tabla 2
+```{r}
+#2018
+b1_18%>%
+  count(cod_nivel)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_18%>%
+  count(es_mujer)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_18%>%
+  count(prioritario)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_18%>%
+  count(alto_rendimiento)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_18%>%
+  count(continuidad)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+#2019
+b1_19%>%
+  count(cod_nivel)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_19%>%
+  count(es_mujer)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_19%>%
+  count(prioritario)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_19%>%
+  count(alto_rendimiento)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_19%>%
+  count(continuidad)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_19%>%
+  count(continuidad)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+#2020
+b1_20%>%
+  count(cod_nivel)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_20%>%
+  count(es_mujer)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_20%>%
+  count(prioritario)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_20%>%
+  count(alto_rendimiento)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_20%>%
+  count(continuidad)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_20%>%
+  count(continuidad)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+#2021
+b1_21%>%
+  count(cod_nivel)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_21%>%
+  count(es_mujer)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_21%>%
+  count(prioritario)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_21%>%
+  count(alto_rendimiento)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_21%>%
+  count(continuidad)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+b1_21%>%
+  count(continuidad)%>%
+  mutate(prop = round(n/sum(n),3)*100)
+```
