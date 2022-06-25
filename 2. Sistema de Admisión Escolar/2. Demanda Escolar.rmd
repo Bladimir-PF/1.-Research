@@ -102,11 +102,9 @@ NOM_COM_RBD == 'SAN NICOLAS'|
 NOM_COM_RBD == 'TREHUACO'|
 NOM_COM_RBD == 'YUNGAY', 16, COD_REG_RBD))
 
-mat18 <- mat18 %>%
+a1_18 <- left_join(a1_18, mat18 %>%
   select(RBD, COD_DEPE2, RURAL_RBD, region, MAT_TOTAL)%>%
-  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, mat_total = MAT_TOTAL)
-
-a1_18 <- left_join(a1_18, mat18, by = 'rbd')
+  rename(rbd = RBD, dep = COD_DEPE2, zona = RURAL_RBD, mat_total = MAT_TOTAL), by = 'rbd')
 
 a1_18 <- a1_18 %>%
   mutate(dep = ifelse(dep == 1 | dep == 5, 0,1))
@@ -153,9 +151,10 @@ a1_18 <- left_join(a1_18, sep18%>%
 
 a1_18 <- a1_18%>%
   mutate(
+    N_PRIO = ifelse(is.na(N_PRIO) == T, 0, N_PRIO),
     prop_prio_mattotal = N_PRIO/mat_total,
     prop_prio_mattotal = ifelse(prop_prio_mattotal <= .25, 0,
-                            ifelse(prop_prio_mattotal >= .251 & prop_prio_mattotal <= .5, 1,2)))
+                            ifelse(prop_prio_mattotal >= .2500001 & prop_prio_mattotal <= .5, 1,2)))
 
 CDB2017 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/Categorías de desempeño/CDB2017.xlsx")
 
@@ -200,7 +199,77 @@ a1_18 <- a1_18%>%
     ciclo_educativo = ifelse(cod_nivel < 1, 0,
     ifelse(cod_nivel >= 1 & cod_nivel < 9,1,2)))
 
-remove(sep18, mat18, dir18, CDM2017, CDB2017)
+simce_4b_2017 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/SIMCE/2017/Simce4b2017_privada_SEG/Archivos XLS (XLSX)/simce4b2017_rbd_final.xlsx")
+
+simce_8b_2017 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/SIMCE/2017/Simce8b2017_privada_SEG/Archivos XLS (XLSX)/simce8b2017_rbd_final.xlsx")
+
+simce_2m_2017 <- read_excel("C:/Users/geral/OneDrive - University of Iowa/CIDCIE/1. Bases de Datos/2. Agencia de Calidad de la Educación/SIMCE/2017/Simce2m2017_privada_SEG/Archivos XLS (XLSX)/simce2m2017_rbd_privada_final.xlsx")
+
+a1_18 <-left_join(a1_18, simce_4b_2017%>%
+  select(rbd, cod_grupo, palu_eda_ins_lect4b_rbd, palu_eda_ins_mate4b_rbd)%>%
+  rename(gse4b = cod_grupo, ins_lec4b = palu_eda_ins_lect4b_rbd, ins_mat4b = palu_eda_ins_mate4b_rbd)%>%
+    mutate(
+      ins_lec4b = ifelse(ins_lec4b <= 25, 0,
+      ifelse(ins_lec4b > 25 & ins_lec4b <= 50, 1, 2)),
+      ins_mat4b = ifelse(ins_mat4b <= 25, 0,
+      ifelse(ins_mat4b > 25 & ins_mat4b <= 50, 1, 2))), by = 'rbd')
+
+a1_18 <-left_join(a1_18, simce_8b_2017%>%
+  select(rbd, cod_grupo)%>%
+  rename(gse8b = cod_grupo), by = 'rbd')
+
+a1_18 <-left_join(a1_18, simce_2m_2017%>%
+  select(rbd, cod_grupo, palu_eda_ins_lect2m_rbd, palu_eda_ins_mate2m_rbd)%>%
+  rename(gse2m = cod_grupo, ins_lec2m = palu_eda_ins_lect2m_rbd, ins_mat2m = palu_eda_ins_mate2m_rbd)%>%
+    mutate(
+      ins_lec2m = ifelse(ins_lec2m <= 25, 0,
+      ifelse(ins_lec2m > 25 & ins_lec2m <= 50, 1, 2)),
+      ins_mat2m = ifelse(ins_mat2m <= 25, 0,
+      ifelse(ins_mat2m > 25 & ins_mat2m <= 50, 1, 2))), by = 'rbd')
+
+a1_18 <- data.frame(a1_18%>%
+  mutate(
+    ins_lec4b = ifelse(is.na(ins_lec4b) == T, -1, ins_lec4b),
+    ins_lec2m = ifelse(is.na(ins_lec2m) == T, -1, ins_lec2m),
+    ins_mat4b = ifelse(is.na(ins_mat4b) == T, -1, ins_mat4b),
+    ins_mat2m = ifelse(is.na(ins_mat2m) == T, -1, ins_mat2m))%>%
+  group_by(rbd)%>%
+  mutate(
+    ins_lec_rbd = max(ins_lec4b, ins_lec2m),
+    ins_mat_rbd = max(ins_mat4b, ins_mat2m)))
+  
+a1_18 <- a1_18%>%
+  mutate(
+    gse8b = ifelse(gse8b == 'Bajo', 1,
+    ifelse(gse8b == 'Medio bajo', 2,
+    ifelse(gse8b == 'Medio', 3,
+    ifelse(gse8b == 'Medio alto', 4,5)))),
+    gse2m = ifelse(gse2m == 'Bajo', 1,
+    ifelse(gse2m == 'Medio bajo', 2,
+    ifelse(gse2m == 'Medio', 3,
+    ifelse(gse2m == 'Medio alto', 4,5)))))
+
+a1_18<- data.frame(a1_18%>%
+  mutate(
+    gse4b = ifelse(is.na(gse4b) == T, -1, gse4b),
+    gse8b = ifelse(is.na(gse8b) == T, -1, gse8b),
+    gse2m = ifelse(is.na(gse2m) == T, -1, gse2m))%>%
+  group_by(rbd)%>%
+  mutate(
+    gse_rbd = max(gse4b, gse8b, gse2m)))
+
+a1_18 <- left_join(a1_18, c1_18%>%
+  filter(pos_valida == 1, agregada_por_continuidad == 0)%>%
+  group_by(rbd, cod_curso)%>%
+  mutate(
+    demanda_cod_curso = n())%>%
+  select(rbd, cod_curso, demanda_cod_curso)%>%
+  filter(duplicated(rbd, cod_curso) == F))
+
+a1_18 <- a1_18%>%
+  mutate(demanda_cod_curso = ifelse(is.na(demanda_cod_curso) == T, 0, demanda_cod_curso))
+    
+remove(sep18, mat18, dir18, CDM2017, CDB2017, simce_4b_2017, simce_8b_2017, simce_2m_2017)
 ```
 
 ### Postulantes
@@ -702,9 +771,6 @@ a1_20%>%
   mutate(
     prop = round(s/sum(s),3)*100
   )
-
-
-
 ```
 
 ## 2021
@@ -916,18 +982,6 @@ a1_21%>%
     prop = round(s/sum(s),3)*100
   )
 
-# categoria de desempeño general
-
-#2018
-a1_18%>%
-  drop_na()%>%
-  group_by(CDG)%>%
-  summarise(
-    s = sum(demanda_cod_curso))%>%
-  mutate(
-    prop = round(s/sum(s),3)*100
-  )
-
 b1_21 <- left_join(b1_21, c1_21%>%
   group_by(mrun)%>%
   summarise(continuidad = sum(prioridad_matriculado)), by = 'mrun')
@@ -1060,3 +1114,64 @@ b1_21%>%
   count(continuidad)%>%
   mutate(prop = round(n/sum(n),3)*100)
 ```
+
+# Tabla 3
+```{r}
+#2018
+dim(c1_18)
+
+c1_18%>%
+  count(pos_valida) #0
+
+c1_18%>%
+  count(agregada_por_continuidad) #1
+
+c1_18%>%
+  filter(agregada_por_continuidad == 0, pos_valida == 1)%>%
+  nrow()
+
+a1_18%>%
+  group_by(ciclo_educativo)%>%
+  summarise(s = sum(demanda_cod_curso))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(con_copago)%>%
+  summarise(s = sum(demanda_cod_curso))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(dep)%>%
+  summarise(s = sum(demanda_cod_curso))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(prop_prio_mattotal)%>%
+  summarise(s = sum(demanda_cod_curso))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(CDG)%>%
+  summarise(s = sum(demanda_cod_curso))%>%
+  drop_na()%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(gse_rbd)%>%
+  summarise(s = sum(demanda_cod_curso))%>%
+  filter(gse_rbd != -1)%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(ins_mat_rbd)%>%
+  summarise(s = sum(demanda_cod_curso))%>%
+  filter(ins_mat_rbd != -1)%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(ins_lec_rbd)%>%
+  summarise(s = sum(demanda_cod_curso))%>%
+  filter(ins_lec_rbd != -1)%>%
+  mutate(prop = round(s/sum(s),3)*100)
+```
+
