@@ -276,10 +276,10 @@ a1_18 <-left_join(a1_18, simce_4b_2017%>%
   select(rbd, cod_grupo, palu_eda_ins_lect4b_rbd, palu_eda_ins_mate4b_rbd)%>%
   rename(gse4b = cod_grupo, ins_lec4b = palu_eda_ins_lect4b_rbd, ins_mat4b = palu_eda_ins_mate4b_rbd)%>%
     mutate(
-      ins_lec4b = ifelse(ins_lec4b <= 25, 0,
-      ifelse(ins_lec4b > 25 & ins_lec4b <= 50, 1, 2)),
-      ins_mat4b = ifelse(ins_mat4b <= 25, 0,
-      ifelse(ins_mat4b > 25 & ins_mat4b <= 50, 1, 2))), by = 'rbd')
+      ins_lec4b = ifelse(ins_lec4b <= 20, 0,
+      ifelse(ins_lec4b > 25 & ins_lec4b <= 40, 1, 2)),
+      ins_mat4b = ifelse(ins_mat4b <= 20, 0,
+      ifelse(ins_mat4b > 25 & ins_mat4b <= 40, 1, 2))), by = 'rbd')
 
 a1_18 <-left_join(a1_18, simce_8b_2017%>%
   select(rbd, cod_grupo)%>%
@@ -289,10 +289,10 @@ a1_18 <-left_join(a1_18, simce_2m_2017%>%
   select(rbd, cod_grupo, palu_eda_ins_lect2m_rbd, palu_eda_ins_mate2m_rbd)%>%
   rename(gse2m = cod_grupo, ins_lec2m = palu_eda_ins_lect2m_rbd, ins_mat2m = palu_eda_ins_mate2m_rbd)%>%
     mutate(
-      ins_lec2m = ifelse(ins_lec2m <= 25, 0,
-      ifelse(ins_lec2m > 25 & ins_lec2m <= 50, 1, 2)),
+      ins_lec2m = ifelse(ins_lec2m <= 20, 0,
+      ifelse(ins_lec2m > 25 & ins_lec2m <= 40, 1, 2)),
       ins_mat2m = ifelse(ins_mat2m <= 25, 0,
-      ifelse(ins_mat2m > 25 & ins_mat2m <= 50, 1, 2))), by = 'rbd')
+      ifelse(ins_mat2m > 25 & ins_mat2m <= 40, 1, 2))), by = 'rbd')
 
 a1_18 <- data.frame(a1_18%>%
   mutate(
@@ -347,6 +347,13 @@ a1_18 <- left_join(a1_18, c1_18%>%
 a1_18 <- a1_18%>%
   mutate(first_pref = ifelse(is.na(first_pref) == T, 0, first_pref))
 
+a1_18 <- a1_18%>%
+  mutate(
+    col_ps_tipos = ifelse(dep == 0, 0,
+              ifelse(dep == 1 & prop_prio_mattotal == 0, 1,
+              ifelse(dep == 1 & prop_prio_mattotal == 1, 2,
+              ifelse(dep == 1 & prop_prio_mattotal == 2, 3, NA)))))
+
 remove(sep18, mat18, dir18, CDM2017, CDB2017, simce_4b_2017, simce_8b_2017, simce_2m_2017)
 ```
 
@@ -365,6 +372,28 @@ d1_18 <- left_join(d1_18, c1_18%>%
 d1_18 <- d1_18%>%
   mutate(cambia_colegio = ifelse(respuesta_postulante == 2 & rbd_admitido == rbd_admitido_post_resp, 0,
   ifelse(respuesta_postulante == 2 & rbd_admitido != rbd_admitido_post_resp, 1, NA)))
+
+d1_18 <- left_join(d1_18, b1_18%>%
+            select(mrun, continuidad), by = 'mrun')
+
+d1_18 <- left_join(d1_18, c1_18%>%
+                     filter(prioridad_matriculado==1)%>%
+            select(mrun, rbd)%>%
+              rename(rbd_origen = rbd), by = 'mrun')
+
+d1_18 <- d1_18%>%
+  mutate(rbd_admision = ifelse(continuidad==1, rbd_admitido, NA))
+
+d1_18 <- left_join(d1_18, a1_18
+          %>%filter(unico == 1)%>%
+            select(rbd, con_copago, dep, zona, prop_prio_mattotal,CDG)%>%
+            rename(rbd_origen = rbd, con_copago_or = con_copago, dep_or = dep, zona_or = zona, prop_prio_mattotal_or = prop_prio_mattotal, CDG_or = CDG), by = 'rbd_origen')
+
+
+d1_18 <- left_join(d1_18, a1_18
+          %>%filter(unico == 1)%>%
+            select(rbd, con_copago, dep, zona, prop_prio_mattotal,CDG)%>%
+            rename(rbd_admision = rbd, con_copago_ad = con_copago, dep_ad = dep, zona_ad = zona, prop_prio_mattotal_ad = prop_prio_mattotal,CDG_ad = CDG), by = 'rbd_admision')
 ```
 
 ## 2019
@@ -541,28 +570,28 @@ a1_19 <-left_join(a1_19, simce_4b_2018%>%
   select(rbd, cod_grupo, palu_eda_ins_lect4b_rbd, palu_eda_ins_mate4b_rbd)%>%
   rename(gse4b = cod_grupo, ins_lec4b = palu_eda_ins_lect4b_rbd, ins_mat4b = palu_eda_ins_mate4b_rbd)%>%
     mutate(
-      ins_lec4b = ifelse(ins_lec4b <= 25, 0,
-      ifelse(ins_lec4b > 25 & ins_lec4b <= 50, 1, 2)),
-      ins_mat4b = ifelse(ins_mat4b <= 25, 0,
-      ifelse(ins_mat4b > 25 & ins_mat4b <= 50, 1, 2))), by = 'rbd')
+      ins_lec4b = ifelse(ins_lec4b <= 20, 0,
+      ifelse(ins_lec4b > 25 & ins_lec4b <= 40, 1, 2)),
+      ins_mat4b = ifelse(ins_mat4b <= 20, 0,
+      ifelse(ins_mat4b > 25 & ins_mat4b <= 40, 1, 2))), by = 'rbd')
 
 a1_19 <-left_join(a1_19, simce_6b_2018%>%
   select(rbd, cod_grupo, palu_eda_ins_lect6b_rbd, palu_eda_ins_mate6b_rbd)%>%
   rename(gse6b = cod_grupo, ins_lec6b = palu_eda_ins_lect6b_rbd, ins_mat6b = palu_eda_ins_mate6b_rbd)%>%
     mutate(
-      ins_lec6b = ifelse(ins_lec6b <= 25, 0,
-      ifelse(ins_lec6b > 25 & ins_lec6b <= 50, 1, 2)),
-      ins_mat6b = ifelse(ins_mat6b <= 25, 0,
-      ifelse(ins_mat6b > 25 & ins_mat6b <= 50, 1, 2))), by = 'rbd')
+      ins_lec6b = ifelse(ins_lec6b <= 20, 0,
+      ifelse(ins_lec6b > 25 & ins_lec6b <= 40, 1, 2)),
+      ins_mat6b = ifelse(ins_mat6b <= 20, 0,
+      ifelse(ins_mat6b > 25 & ins_mat6b <= 40, 1, 2))), by = 'rbd')
 
 a1_19 <-left_join(a1_19, simce_2m_2018%>%
   select(rbd, cod_grupo, palu_eda_ins_lect2m_rbd, palu_eda_ins_mate2m_rbd)%>%
   rename(gse2m = cod_grupo, ins_lec2m = palu_eda_ins_lect2m_rbd, ins_mat2m = palu_eda_ins_mate2m_rbd)%>%
     mutate(
-      ins_lec2m = ifelse(ins_lec2m <= 25, 0,
-      ifelse(ins_lec2m > 25 & ins_lec2m <= 50, 1, 2)),
-      ins_mat2m = ifelse(ins_mat2m <= 25, 0,
-      ifelse(ins_mat2m > 25 & ins_mat2m <= 50, 1, 2))), by = 'rbd')
+      ins_lec2m = ifelse(ins_lec2m <= 20, 0,
+      ifelse(ins_lec2m > 25 & ins_lec2m <= 40, 1, 2)),
+      ins_mat2m = ifelse(ins_mat2m <= 20, 0,
+      ifelse(ins_mat2m > 25 & ins_mat2m <= 40, 1, 2))), by = 'rbd')
 
 a1_19 <- data.frame(a1_19%>%
   mutate(
@@ -607,7 +636,14 @@ a1_19 <- left_join(a1_19, c1_19%>%
 
 a1_19 <- a1_19%>%
   mutate(first_pref = ifelse(is.na(first_pref) == T, 0, first_pref))
-    
+
+a1_19 <- a1_19%>%
+  mutate(
+    col_ps_tipos = ifelse(dep == 0, 0,
+              ifelse(dep == 1 & prop_prio_mattotal == 0, 1,
+              ifelse(dep == 1 & prop_prio_mattotal == 1, 2,
+              ifelse(dep == 1 & prop_prio_mattotal == 2, 3, NA)))))
+
 remove(sep19, mat19, dir19, CDM2018, CDB2018, simce_4b_2018, simce_6b_2018, simce_2m_2018)
 ```
 
@@ -626,6 +662,28 @@ d1_19 <- left_join(d1_19, c1_19%>%
 d1_19 <- d1_19%>%
   mutate(cambia_colegio = ifelse(respuesta_postulante == 2 & rbd_admitido == rbd_admitido_post_resp, 0,
   ifelse(respuesta_postulante == 2 & rbd_admitido != rbd_admitido_post_resp, 1, NA)))
+
+d1_19 <- left_join(d1_19, b1_19%>%
+            select(mrun, continuidad), by = 'mrun')
+
+d1_19 <- left_join(d1_19, c1_19%>%
+                     filter(prioridad_matriculado==1)%>%
+            select(mrun, rbd)%>%
+              rename(rbd_origen = rbd), by = 'mrun')
+
+d1_19 <- d1_19%>%
+  mutate(rbd_admision = ifelse(continuidad==1, rbd_admitido, NA))
+
+d1_19 <- left_join(d1_19, a1_19%>%
+                     filter(unico == 1)%>%
+                     select(rbd, con_copago, dep, zona, prop_prio_mattotal,CDG)%>%
+            rename(rbd_origen = rbd, con_copago_or = con_copago, dep_or = dep, zona_or = zona, prop_prio_mattotal_or = prop_prio_mattotal, CDG_or = CDG), by = 'rbd_origen')
+
+
+d1_19 <- left_join(d1_19, a1_19%>%
+                     filter(unico == 1)%>%
+                     select(rbd, con_copago, dep, zona, prop_prio_mattotal,CDG)%>%
+            rename(rbd_admision = rbd, con_copago_ad = con_copago, dep_ad = dep, zona_ad = zona, prop_prio_mattotal_ad = prop_prio_mattotal,CDG_ad = CDG), by = 'rbd_admision')
 ```
 
 ## 2020
@@ -814,6 +872,13 @@ a1_20 <- left_join(a1_20, c1_20%>%
 a1_20 <- a1_20%>%
   mutate(first_pref = ifelse(is.na(first_pref) == T, 0, first_pref))
 
+a1_20 <- a1_20%>%
+  mutate(
+    col_ps_tipos = ifelse(dep == 0, 0,
+              ifelse(dep == 1 & prop_prio_mattotal == 0, 1,
+              ifelse(dep == 1 & prop_prio_mattotal == 1, 2,
+              ifelse(dep == 1 & prop_prio_mattotal == 2, 3, NA)))))
+
 remove(sep20, mat20, dir20, CDM2019, CDB2019)
 ```
 
@@ -832,6 +897,28 @@ d1_20 <- left_join(d1_20, c1_20%>%
 d1_20 <- d1_20%>%
   mutate(cambia_colegio = ifelse(respuesta_postulante == 2 & rbd_admitido == rbd_admitido_post_resp, 0,
   ifelse(respuesta_postulante == 2 & rbd_admitido != rbd_admitido_post_resp, 1, NA)))
+
+d1_20 <- left_join(d1_20, b1_20%>%
+            select(mrun, continuidad), by = 'mrun')
+
+d1_20 <- left_join(d1_20, c1_20%>%
+                     filter(prioridad_matriculado==1)%>%
+            select(mrun, rbd)%>%
+              rename(rbd_origen = rbd), by = 'mrun')
+
+d1_20 <- d1_20%>%
+  mutate(rbd_admision = ifelse(continuidad==1, rbd_admitido, NA))
+
+d1_20 <- left_join(d1_20, a1_20%>%
+                     filter(unico == 1)%>%
+                     select(rbd, con_copago, dep, zona, prop_prio_mattotal,CDG)%>%
+            rename(rbd_origen = rbd, con_copago_or = con_copago, dep_or = dep, zona_or = zona, prop_prio_mattotal_or = prop_prio_mattotal, CDG_or = CDG), by = 'rbd_origen')
+
+
+d1_20 <- left_join(d1_20, a1_20%>%
+                     filter(unico == 1)%>%
+                     select(rbd, con_copago, dep, zona, prop_prio_mattotal,CDG)%>%
+            rename(rbd_admision = rbd, con_copago_ad = con_copago, dep_ad = dep, zona_ad = zona, prop_prio_mattotal_ad = prop_prio_mattotal,CDG_ad = CDG), by = 'rbd_admision')
 ```
 
 ## 2021
@@ -985,6 +1072,13 @@ a1_21 <- left_join(a1_21, c1_21%>%
 
 a1_21 <- a1_21%>%
   mutate(first_pref = ifelse(is.na(first_pref) == T, 0, first_pref))
+
+a1_21 <- a1_21%>%
+  mutate(
+    col_ps_tipos = ifelse(dep == 0, 0,
+              ifelse(dep == 1 & prop_prio_mattotal == 0, 1,
+              ifelse(dep == 1 & prop_prio_mattotal == 1, 2,
+              ifelse(dep == 1 & prop_prio_mattotal == 2, 3, NA)))))
     
 remove(sep21, mat21, dir21)
 ```
@@ -1004,6 +1098,27 @@ d1_21 <- left_join(d1_21, c1_21%>%
 d1_21 <- d1_21%>%
   mutate(cambia_colegio = ifelse(respuesta_postulante == 2 & rbd_admitido == rbd_admitido_post_resp, 0,
   ifelse(respuesta_postulante == 2 & rbd_admitido != rbd_admitido_post_resp, 1, NA)))
+
+d1_21 <- left_join(d1_21, b1_21%>%
+            select(mrun, continuidad), by = 'mrun')
+
+d1_21 <- left_join(d1_21, c1_21%>%
+                     filter(prioridad_matriculado==1)%>%
+            select(mrun, rbd)%>%
+              rename(rbd_origen = rbd), by = 'mrun')
+
+d1_21 <- d1_21%>%
+  mutate(rbd_admision = ifelse(continuidad==1, rbd_admitido, NA))
+
+d1_21 <- left_join(d1_21, a1_21%>%
+                     filter(unico == 1)%>%
+                     select(rbd, con_copago, dep, zona, prop_prio_mattotal)%>%
+            rename(rbd_origen = rbd, con_copago_or = con_copago, dep_or = dep, zona_or = zona, prop_prio_mattotal_or = prop_prio_mattotal), by = 'rbd_origen')
+
+d1_21 <- left_join(d1_21, a1_21%>%
+                     filter(unico == 1)%>%
+                     select(rbd, con_copago, dep, zona, prop_prio_mattotal)%>%
+            rename(rbd_admision = rbd, con_copago_ad = con_copago, dep_ad = dep, zona_ad = zona, prop_prio_mattotal_ad = prop_prio_mattotal), by = 'rbd_admision')
 ```
 
 # Tabla 1
@@ -1395,128 +1510,207 @@ a1_21%>%
 ```{r}
 # 2018
 a1_18%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
+  group_by(col_ps_tipos)%>%
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)
+
+a1_18%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
   group_by(con_copago)%>%
-  summarise(s = sum(first_pref))%>%
-  mutate(prop = round(s/sum(s),3)*100)
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)
 
 a1_18%>%
-  group_by(dep)%>%
-  summarise(s = sum(first_pref))%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_18%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
   group_by(prop_prio_mattotal)%>%
-  summarise(s = sum(first_pref))%>%
-  na.omit()%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_18%>%
-  group_by(CDG)%>%
-  summarise(s = sum(first_pref))%>%
-  drop_na()%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_18%>%
-  group_by(gse_rbd)%>%
-  summarise(s = sum(first_pref))%>%
-  filter(gse_rbd != -1)%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_18%>%
-  group_by(ins_mat_rbd)%>%
-  summarise(s = sum(first_pref))%>%
-  filter(ins_mat_rbd != -1)%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_18%>%
-  group_by(ins_lec_rbd)%>%
-  summarise(s = sum(first_pref))%>%
-  filter(ins_lec_rbd != -1)%>%
-  mutate(prop = round(s/sum(s),3)*100)
+  filter(is.na(prop_prio_mattotal) == F)%>%
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)
 
 #2019
 a1_19%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
+  group_by(col_ps_tipos)%>%
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)
+
+a1_19%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
   group_by(con_copago)%>%
-  summarise(s = sum(first_pref))%>%
-  mutate(prop = round(s/sum(s),3)*100)
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)
 
 a1_19%>%
-  group_by(dep)%>%
-  summarise(s = sum(first_pref))%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_19%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
   group_by(prop_prio_mattotal)%>%
-  summarise(s = sum(first_pref))%>%
-  na.omit()%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_19%>%
-  group_by(CDG)%>%
-  summarise(s = sum(first_pref))%>%
-  drop_na()%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_19%>%
-  group_by(gse_rbd)%>%
-  summarise(s = sum(first_pref))%>%
-  filter(gse_rbd != -1)%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_19%>%
-  group_by(ins_mat_rbd)%>%
-  summarise(s = sum(first_pref))%>%
-  filter(ins_mat_rbd != -1)%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_19%>%
-  group_by(ins_lec_rbd)%>%
-  summarise(s = sum(first_pref))%>%
-  filter(ins_lec_rbd != -1)%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
+  filter(is.na(prop_prio_mattotal) == F)%>%
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)
 #2020
 a1_20%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
+  group_by(col_ps_tipos)%>%
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)%>%
+  na.omit()
+
+a1_20%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
   group_by(con_copago)%>%
-  summarise(s = sum(first_pref))%>%
-  mutate(prop = round(s/sum(s),3)*100)
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)
 
 a1_20%>%
-  group_by(dep)%>%
-  summarise(s = sum(first_pref))%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_20%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
   group_by(prop_prio_mattotal)%>%
-  summarise(s = sum(first_pref))%>%
-  na.omit()%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_20%>%
-  group_by(CDG)%>%
-  summarise(s = sum(first_pref))%>%
-  drop_na()%>%
-  mutate(prop = round(s/sum(s),3)*100)
+  filter(is.na(prop_prio_mattotal) == F)%>%
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)
 
 #2021
 a1_21%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
+  group_by(col_ps_tipos)%>%
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)%>%
+  na.omit()
+
+a1_21%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
   group_by(con_copago)%>%
-  summarise(s = sum(first_pref))%>%
-  mutate(prop = round(s/sum(s),3)*100)
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)
 
 a1_21%>%
-  group_by(dep)%>%
-  summarise(s = sum(first_pref))%>%
-  mutate(prop = round(s/sum(s),3)*100)
-
-a1_21%>%
+  group_by(rbd)%>%
+  mutate(pos_rbd = sum(demanda_cod_curso),
+         vacantes_rbd = sum(vacantes),
+         first_rbd = sum(first_pref))%>%
+  filter(unico == 1)%>%
+  ungroup(rbd)%>%
   group_by(prop_prio_mattotal)%>%
-  summarise(s = sum(first_pref))%>%
-  na.omit()%>%
-  mutate(prop = round(s/sum(s),3)*100)
+  filter(is.na(prop_prio_mattotal) == F)%>%
+  summarise(colegios = n(),
+            vacancies = sum(vacantes_rbd),
+            postulaciones_rbd = sum(pos_rbd),
+            f_pref = sum(first_rbd),
+            pos_promedio = postulaciones_rbd/colegios,
+            ratio_pos_vac = postulaciones_rbd/vacancies,
+            vac_ocup = f_pref/vacancies)
 ```
 
-# Diagrama 1
+# Tabla 5
 ```{r}
 #2018
 nrow(d1_18)
@@ -1678,7 +1872,7 @@ d1_21%>%
   mutate(prop = round(n2/sum(n2),3)*100)
 ```
 
-# Tabla 5
+# Tabla 6
 ```{r}
 #2018
 d1_18%>%
@@ -1717,3 +1911,322 @@ d1_21%>%
   mutate(prop = round(n2/sum(n2),3)*100)
 ```
 
+# Tabla 7
+```{r}
+d1_18%>%
+  count(dep_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_18%>%
+  count(dep_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_18%>%
+  count(con_copago_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_18%>%
+  count(con_copago_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_18%>%
+  count(zona_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_18%>%
+  count(zona_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_18%>%
+  count(CDG_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_18%>%
+  count(CDG_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_18%>%
+  count(prop_prio_mattotal_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_18%>%
+  count(prop_prio_mattotal_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+#2019
+d1_19%>%
+  count(dep_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_19%>%
+  count(dep_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_19%>%
+  count(con_copago_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_19%>%
+  count(con_copago_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_19%>%
+  count(zona_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_19%>%
+  count(zona_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_19%>%
+  count(CDG_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_19%>%
+  count(CDG_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_19%>%
+  count(prop_prio_mattotal_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_19%>%
+  count(prop_prio_mattotal_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+#2020
+d1_20%>%
+  count(dep_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_20%>%
+  count(dep_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_20%>%
+  count(con_copago_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_20%>%
+  count(con_copago_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_20%>%
+  count(zona_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_20%>%
+  count(zona_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_20%>%
+  count(CDG_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_20%>%
+  count(CDG_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_20%>%
+  count(prop_prio_mattotal_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_20%>%
+  count(prop_prio_mattotal_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+#2021
+d1_21%>%
+  count(dep_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_21%>%
+  count(dep_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_21%>%
+  count(con_copago_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_21%>%
+  count(con_copago_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_21%>%
+  count(zona_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_21%>%
+  count(zona_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_21%>%
+  count(prop_prio_mattotal_or)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+
+d1_21%>%
+  count(prop_prio_mattotal_ad)%>%
+  drop_na()%>%
+  mutate(prop = round(n/sum(n),3)*100)
+```
+
+# Primeras preferencias
+```{r}
+a1_18%>%
+  group_by(con_copago)%>%
+  summarise(s = sum(first_pref))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(dep)%>%
+  summarise(s = sum(first_pref))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(prop_prio_mattotal)%>%
+  summarise(s = sum(first_pref))%>%
+  na.omit()%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(CDG)%>%
+  summarise(s = sum(first_pref))%>%
+  drop_na()%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(gse_rbd)%>%
+  summarise(s = sum(first_pref))%>%
+  filter(gse_rbd != -1)%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(ins_mat_rbd)%>%
+  summarise(s = sum(first_pref))%>%
+  filter(ins_mat_rbd != -1)%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_18%>%
+  group_by(ins_lec_rbd)%>%
+  summarise(s = sum(first_pref))%>%
+  filter(ins_lec_rbd != -1)%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+#2019
+a1_19%>%
+  group_by(con_copago)%>%
+  summarise(s = sum(first_pref))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_19%>%
+  group_by(dep)%>%
+  summarise(s = sum(first_pref))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_19%>%
+  group_by(prop_prio_mattotal)%>%
+  summarise(s = sum(first_pref))%>%
+  na.omit()%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_19%>%
+  group_by(CDG)%>%
+  summarise(s = sum(first_pref))%>%
+  drop_na()%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_19%>%
+  group_by(gse_rbd)%>%
+  summarise(s = sum(first_pref))%>%
+  filter(gse_rbd != -1)%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_19%>%
+  group_by(ins_mat_rbd)%>%
+  summarise(s = sum(first_pref))%>%
+  filter(ins_mat_rbd != -1)%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_19%>%
+  group_by(ins_lec_rbd)%>%
+  summarise(s = sum(first_pref))%>%
+  filter(ins_lec_rbd != -1)%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+#2020
+a1_20%>%
+  group_by(con_copago)%>%
+  summarise(s = sum(first_pref))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_20%>%
+  group_by(dep)%>%
+  summarise(s = sum(first_pref))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_20%>%
+  group_by(prop_prio_mattotal)%>%
+  summarise(s = sum(first_pref))%>%
+  na.omit()%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_20%>%
+  group_by(CDG)%>%
+  summarise(s = sum(first_pref))%>%
+  drop_na()%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+#2021
+a1_21%>%
+  group_by(con_copago)%>%
+  summarise(s = sum(first_pref))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_21%>%
+  group_by(dep)%>%
+  summarise(s = sum(first_pref))%>%
+  mutate(prop = round(s/sum(s),3)*100)
+
+a1_21%>%
+  group_by(prop_prio_mattotal)%>%
+  summarise(s = sum(first_pref))%>%
+  na.omit()%>%
+  mutate(prop = round(s/sum(s),3)*100)
+```
