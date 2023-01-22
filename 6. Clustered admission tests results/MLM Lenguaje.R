@@ -192,6 +192,7 @@ data <- filter(data, train == 1)
 
 write.csv(data, file = 'data_training.csv')
 write.csv(data2, file = 'data_holdout.csv')
+write.csv(empty, file = 'empty_models.csv')
 
 # 3. Data analysis ####
 
